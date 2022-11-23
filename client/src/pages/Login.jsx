@@ -1,6 +1,5 @@
 import { useState } from "react"
 import Cookie from "js-cookie"
-import { Alert, Button, Container, Form } from 'react-bootstrap'
 
 const LoginPage = (props) => {
   const [ loginCreds, setLoginCreds ] = useState({ email: "", password: "" })
@@ -27,39 +26,8 @@ const LoginPage = (props) => {
   }
 
   return (
-    <Container style={{ padding: "50px 200px"}}>
-      <Form onSubmit={handleLogin}>
-        <Form.Group className="mb-3" controlId="email">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control 
-            type="email" 
-            name="email"
-            placeholder="Enter email" 
-            value={ loginCreds.email }
-            onChange={ (e) => setLoginCreds({ ...loginCreds, [e.target.name]: e.target.value })}
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control 
-            type="password" 
-            name="password"
-            placeholder="Password" 
-            value={ loginCreds.password }
-            onChange={ (e) => setLoginCreds({ ...loginCreds, [e.target.name]: e.target.value })}
-          />
-        </Form.Group>
-
-        <Button variant="primary" type="submit">Submit</Button>
-      </Form>
-      
-      { formMessage.msg.length > 0 && (
-        <Alert variant={formMessage.type} style={{ marginTop: "2em" }}>
-          { formMessage.msg }
-        </Alert>
-      )}
-    </Container>
+    <>
+    </>
   )
 }
 
