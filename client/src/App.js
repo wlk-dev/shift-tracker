@@ -6,7 +6,7 @@ import { AppProvider } from "./utils/AppContext";
 import Login from "./pages/Login"
 import Profile from "./pages/Profile"
 import Home from "./pages/Home"
-import PageNotFound from "./pages/PageNotFound"
+import PageNotFound from "./pages/404"
 import './App.css';
 
 function App() {
