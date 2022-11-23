@@ -9,7 +9,7 @@ const AppProvider = ({ children }) => {
     const [ appState, setAppState ] = useState({ userData : {}});
 
     const getUser = () => {
-      setAppState({ ...appState, userData : {isManager : true}})
+      setAppState({ ...appState, userData : {isManager : true, name : 'XXXX'}})
     }
     useEffect(() => {
         getUser()

@@ -1,6 +1,7 @@
 import { AppProvider } from "./utils/AppContext";
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Login from "./pages/Login"
+import { ChakraProvider } from '@chakra-ui/react'
 import Profile from "./pages/Profile"
 import Home from "./pages/Home"
 import './App.css';
@@ -34,6 +35,7 @@ function App() {
       
       </BrowserRouter>
     </AppProvider>
+
   );
 }
 

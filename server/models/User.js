@@ -6,13 +6,13 @@ const UserSchema = new Schema({
     lname: { type: String },
     mgr: { type: Boolean },
     email: { type: String },
-    ctcnum: {
+    contactNum: {
         type: Number,
         validate: {
             validator: function (v) {
-                return /d{10}/.test(v);
+                return /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/.test(v);
             },
-            message: '{VALUE} is not a valid 10 digit number'
+            message: '{VALUE} is not a valid phone number'
         }
     },
 });
