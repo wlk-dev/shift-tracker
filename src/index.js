@@ -37,12 +37,12 @@ const items = [
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <div>
-    Rendered by react!
-    <Timeline
+    <App />
+    {/* <Timeline
       groups={groups}
       items={items}
       defaultTimeStart={moment().add(-12, 'hour')}
       defaultTimeEnd={moment().add(12, 'hour')}
-    />
-  </div>,
+    /> */}
+  </div>
 )
