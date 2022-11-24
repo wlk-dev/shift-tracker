@@ -3,10 +3,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { ChakraProvider } from '@chakra-ui/react'
 import { AppProvider } from "./utils/AppContext";
 
+import Signup from "./pages/Signup"
 import Login from "./pages/Login"
 import Profile from "./pages/Profile"
 import Home from "./pages/Home"
-import PageNotFound from "./pages/PageNotFound"
+import PageNotFound from "./pages/404"
 import './App.css';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home authUser={authUser} />} />
+            <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="*" element={<PageNotFound />} />
