@@ -15,7 +15,7 @@ const AppProvider = ({ children }) => {
 
     const logout = () => {
         Cookie.remove("auth-token")
-        window.location.href = "/login"
+        // window.location.href = "/login"
     }
 
     useEffect(() => {
