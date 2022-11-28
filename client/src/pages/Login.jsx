@@ -46,6 +46,16 @@ const LoginPage = (props) => {
 
         const validCreds = validateCreds()
 
+        if (!validCreds.email) {
+            setFormMessage({ type: "error", msg: "Not a valid email." })
+            return
+        }
+
+        if (!validCreds.password) {
+            setFormMessage({ type: "error", msg: "Not a valid password." })
+            return
+        }
+
         const authCheck = await fetch("/api/user/auth", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
