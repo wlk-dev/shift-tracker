@@ -15,7 +15,10 @@ export default function Tile(props) {
 
 
     const tileStyle = {
+        backgroundColor: "#333",
+        boxShadow: "0 10px 10px #333",
         color: isHover ? "#e73c7e" : "white",
+        transform : isHover && "translateY(-5px)",
         display: "flex",
         textAlign: "center",
         alignItems: "center",
