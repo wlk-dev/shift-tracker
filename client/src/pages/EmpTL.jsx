@@ -6,7 +6,6 @@ import Timeline, {
 
 import moment from 'moment'
 
-
 const EmpTL = (props) => {
   
   const employees = [{ id: 1, title: 'Emp 1' }]
