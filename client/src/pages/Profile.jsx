@@ -1,13 +1,20 @@
 import { useAppContext } from "../utils/AppContext";
+import ProfileContact from "../components/ProfileContact";
+import ProfileCard from "../components/ProfileCard";
 
 function Profile() {
-    const appCtx = useAppContext();
-    const state = appCtx.appState
+
+    const divStyle={
+        display: "flex",
+        justifyContent: "center"
+    }
 
     return (
-        <>
-            <p>{state.userData.name}</p>
-        </>
+        <div style={divStyle}>
+            <ProfileCard />
+            <ProfileContact/>
+
+        </div>
     )
 }
 
