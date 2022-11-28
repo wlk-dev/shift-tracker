@@ -10,9 +10,9 @@ function Home() {
 
     return (
         // Grid Component
-        <div style={{ backgroundColor: "#BFDBF7" }}>
+        <div style={{ backgroundColor: "#F7FAFC" }}>
 
-            <Box backgroundColor={'#333'}>
+            <Box backgroundColor={'black'}>
                 <Card>
                     <CardHeader>
                         <Heading color={"white"} size='md'>Welcome back, {state.userData.name}</Heading>

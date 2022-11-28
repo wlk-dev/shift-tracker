@@ -1,9 +1,15 @@
 import React from "react"
 import Tile from './Tile'
 import { faHouse, faCircleUser, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { SimpleGrid } from '@chakra-ui/react'
+import { useAppContext } from "../utils/AppContext"
+
 
 
 export default function TileMenu() {
+  const { logout } = useAppContext()
+
+
     const containerStyles = {
         display: "grid",
         height: "100vh",
@@ -32,34 +38,40 @@ export default function TileMenu() {
         {
             txt : "Home",
             goTo : '/home',
-            icon : faHouse
+            icon : faHouse,
+            exec : () => {}
 
         },
         {
             txt : "Profile",
             goTo : '/profile',
-            icon : faCircleUser
+            icon : faCircleUser,
+            exec : () => {}
         },
         {
             txt : "Logout",
             goTo : '/logout',
-            icon : faArrowRightFromBracket
+            icon : faArrowRightFromBracket,
+            exec : logout
         }
     ]
 
     const createTiles = total => {
         return Array.from(items).map((item, index) => {
-            return (<Tile goTo={item.goTo} key={index + 1} className="tile" idx={index} txt={item.txt} icon={item.icon} />)
+            return (<Tile goTo={item.goTo} key={index + 1} className="tile" idx={index} txt={item.txt} icon={item.icon} exec={item.exec} />)
         })
     }
 
     const tiles = createTiles(6)
 
     return (
-        <div style={containerStyles} >
-            <div style={tilesStyle} >
+        <div style={{height : "100vh"}} >
+            <SimpleGrid columns={[1, 3]} spacing={5} minChildWidth='120px'>
                 {tiles}
-            </div>
+            </SimpleGrid>
+            {/* <div style={tilesStyle} >
+                {tiles}
+            </div> */}
         </div>
     )
 }
