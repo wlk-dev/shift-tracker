@@ -12,9 +12,9 @@ export default function TileMenu() {
     }
 
     const tilesStyle = {
-        backgroundColor: "#333",
-        boxShadow: "0 0 10px #022B3A",
-        height: `80vh`,
+        // backgroundColor: "#333",
+        // boxShadow: "0 0 10px #022B3A",
+        height: `40vh`,
         width: `60vw`,
 
         backdropFilter : "blur(10px)",
