@@ -15,7 +15,6 @@ export default function Tile(props) {
         setIsHover(false)
     }
 
-
     const tileStyle = {
         boxSizing : "border-box",
         WebkitBoxSizing : "border-box",

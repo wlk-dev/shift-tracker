@@ -50,7 +50,7 @@ export default function TileMenu() {
         },
         {
             txt : "Logout",
-            goTo : '/logout',
+            goTo : '/login',
             icon : faArrowRightFromBracket,
             exec : logout
         }
