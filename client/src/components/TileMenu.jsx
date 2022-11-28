@@ -1,5 +1,7 @@
 import React from "react"
 import Tile from './Tile'
+import { faHouse, faCircleUser, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+
 
 export default function TileMenu() {
     const containerStyles = {
@@ -17,8 +19,8 @@ export default function TileMenu() {
         height: `40vh`,
         width: `60vw`,
 
-        backdropFilter : "blur(10px)",
-        webkitBackdropFilter : "blur(10px)",
+        // backdropFilter : "blur(10px)",
+        // WebkitBackdropFilter : "blur(10px)",
 
         display : "grid",
 
@@ -29,21 +31,25 @@ export default function TileMenu() {
     const items = [
         {
             txt : "Home",
-            goTo : '/home'
+            goTo : '/home',
+            icon : faHouse
+
         },
         {
             txt : "Profile",
-            goTo : '/profile'
+            goTo : '/profile',
+            icon : faCircleUser
         },
         {
-            txt : "Login",
-            goTo : '/logout'
+            txt : "Logout",
+            goTo : '/logout',
+            icon : faArrowRightFromBracket
         }
     ]
 
     const createTiles = total => {
         return Array.from(items).map((item, index) => {
-            return (<Tile goTo={item.goTo} key={index + 1} className="tile" idx={index} txt={item.txt} ></Tile>)
+            return (<Tile goTo={item.goTo} key={index + 1} className="tile" idx={index} txt={item.txt} icon={item.icon} />)
         })
     }
 

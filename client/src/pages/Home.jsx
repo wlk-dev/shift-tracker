@@ -1,6 +1,6 @@
 import { useAppContext } from "../utils/AppContext";
 
-import { Card, CardHeader, CardBody, CardFooter } from '@chakra-ui/react'
+import { Card, CardHeader, Heading, Box } from '@chakra-ui/react'
 
 import TileMenu from "../components/TileMenu";
 
@@ -10,13 +10,16 @@ function Home() {
 
     return (
         // Grid Component
-        <div style={{backgroundColor : "#BFDBF7"}}>
+        <div style={{ backgroundColor: "#BFDBF7" }}>
 
-            <Card>
-                <CardBody>
-                    <p>Welcome back, {state.userData.name}.</p>
-                </CardBody>
-            </Card>
+            <Box backgroundColor={'#333'}>
+                <Card>
+                    <CardHeader>
+                        <Heading color={"white"} size='md'>Welcome back, {state.userData.name}</Heading>
+                    </CardHeader>
+                </Card>
+
+            </Box>
 
             {/* {state.userData.isManager && (
                 <p> [show manager stuff] </p>
