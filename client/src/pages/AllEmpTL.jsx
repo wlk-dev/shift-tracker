@@ -1,7 +1,7 @@
 import Timeline, {
   TimelineHeaders,
   SidebarHeader,
-  DateHeader
+  DateHeader,
 } from 'react-calendar-timeline'
 
 import moment from 'moment'
@@ -44,7 +44,7 @@ const AllEmpTL = (props) => {
       items={shifts}
       defaultTimeStart={moment().add(-12, 'hour')}
       defaultTimeEnd={moment().add(12, 'hour')}
-      minZoom={60 * 60 * 1000}
+      minZoom={24 * 60 * 60 * 1000}
       maxZoom={365.24 * 86400 * 1000}
     >
       
