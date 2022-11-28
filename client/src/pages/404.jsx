@@ -35,7 +35,8 @@ const PageNotFound = (props) => {
               bg={'green.600'}
               rounded={'full'}
               color={'white'}
-              _hover={{ bg: 'green.800' }}>
+              _hover={{ bg: 'green.800' }}
+              onClick={() => {window.location.href = '/'}}>
               Take me home
             </Button>
           </Stack>

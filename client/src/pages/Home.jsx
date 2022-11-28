@@ -10,7 +10,7 @@ function Home() {
 
     return (
         // Grid Component
-        <div style={{ backgroundColor: "#F7FAFC" }}>
+        <div style={{ backgroundColor: "whitesmoke" }}>
 
             <Box backgroundColor={'black'}>
                 <Card>
