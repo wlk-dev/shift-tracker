@@ -14,6 +14,27 @@ const createUser = async (req, res) => {
     res.status(400).json({ message: 'Unable to create user' });
   }
 }
+
+
+//needs work
+const updateUser = async (req, res) =>{
+  try{
+    let updatedUser = await User.updateOne(
+        {
+            email: req.body.email
+        },
+        {
+            where: {
+                email: req.body.email
+            }
+        }
+    );
+     res.status(200).json({ result: 'success', payload: updatedUser});
+   } catch(err){
+    res.status(500).json({message: 'Unable to update user'});
+   }
+}
+
   
 const getAllUsers = async (req, res) => {
   try {
@@ -79,5 +100,6 @@ module.exports = {
   getAllUsers,
   getUserById,
   authenticateLogin,
-  lookupUserByToken
+  lookupUserByToken,
+  updateUser
 }
