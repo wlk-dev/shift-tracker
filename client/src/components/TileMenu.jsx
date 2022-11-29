@@ -37,7 +37,7 @@ export default function TileMenu() {
     const items = [
         {
             txt : "Home",
-            goTo : '/home',
+            goTo : '/',
             icon : faHouse,
             exec : () => {}
 
