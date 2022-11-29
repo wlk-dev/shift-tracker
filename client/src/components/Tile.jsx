@@ -15,14 +15,13 @@ export default function Tile(props) {
         setIsHover(false)
     }
 
-
     const tileStyle = {
         boxSizing : "border-box",
         WebkitBoxSizing : "border-box",
         MozBoxSizing: "border-box",
-        backgroundColor: "black",
-        boxShadow: !isHover && "0 7px #B388EB",
-        color: isHover ? "#B388EB" : "white",
+        backgroundColor: "#333",
+        boxShadow: !isHover && "0 7px #DEB887",
+        color: isHover ? "#DEB887" : "white",
         transform: isHover && "translateY(5px)",
         display: "flex",
         flexDirection : "column",

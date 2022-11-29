@@ -9,6 +9,7 @@ import Profile from "./pages/Profile"
 import Home from "./pages/Home"
 import PageNotFound from "./pages/404"
 import AllEmpTL from "./pages/AllEmpTL"
+import EmpTL from "./pages/EmpTL"
 import './App.css';
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/schedule" element={<AllEmpTL />} />
+            <Route path="/empschedule" element={<EmpTL />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </BrowserRouter>
