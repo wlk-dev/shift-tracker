@@ -35,7 +35,7 @@ function App() {
   return (
     <ChakraProvider>
       <AppProvider>
-        <BrowserRouter>
+        <BrowserRouter basename='/'>
           <Routes>
             <Route path="/" element={<Home authUser={authUser} />} />
             <Route path="/signup" element={<Signup />} />
