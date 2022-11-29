@@ -22,7 +22,7 @@ function App() {
       setAuthUser(checkResult.payload)
     } else {
       const currentPath = window.location.pathname
-      if (!["/login", "signup"].includes(currentPath) ){
+      if (!["/login", "/signup"].includes(currentPath) ){
         window.location.href = "/login"
       }
     }
