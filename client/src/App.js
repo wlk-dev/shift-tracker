@@ -20,6 +20,11 @@ function App() {
     const checkResult = await authCheck.json()
     if (checkResult && checkResult.result === "success") {
       setAuthUser(checkResult.payload)
+    } else {
+      const currentPath = window.location.pathname
+      if (!["/login", "signup"].includes(currentPath) ){
+        window.location.href = "/login"
+      }
     }
   }
 
