@@ -15,6 +15,7 @@ const UserSchema = new Schema({
             message: '{VALUE} is not a valid phone number'
         }
     },
+    password: { type: String }
 });
 
 UserSchema.pre("save", async function (next) {

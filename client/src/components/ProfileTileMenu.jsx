@@ -28,7 +28,7 @@ export default function ProfileTileMenu() {
             exec : () => {}
         },
         {
-            goTo : '/logout',
+            goTo : '/login',
             icon : faArrowRightFromBracket,
             exec : logout
         }
