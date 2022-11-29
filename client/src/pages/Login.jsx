@@ -13,7 +13,9 @@ import {
     Alert,
     AlertIcon,
     AlertDescription,
-    AlertTitle
+    AlertTitle,
+    Text,
+    Link,
 } from '@chakra-ui/react';
 
 const LoginPage = (props) => {
@@ -123,6 +125,11 @@ const LoginPage = (props) => {
                                 onClick={handleLogin}>
                                 Sign in
                             </Button>
+                            <Stack pt={6}>
+                                <Text align={'center'}>
+                                    Don't have an account? <Link href="/signup" color={'blue.400'}>Sign Up</Link>
+                                </Text>
+                            </Stack>
                         </Stack>
                     </Stack>
                 </Box>

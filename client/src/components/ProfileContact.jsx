@@ -3,7 +3,6 @@ import {
     Card,
     CardHeader, 
     CardBody, 
-    CardFooter, 
     Heading, 
     Stack, 
     StackDivider,
@@ -13,10 +12,9 @@ import {
 
 const ProfileContact = (props) =>{
 
-    const cardStyle={
-        border: "3px solid black",
-        margin: "10px",
-        width: "50%"
+    const cardStyle = {
+        width: '100%',
+        height: '100%',
     }
 
     return(
