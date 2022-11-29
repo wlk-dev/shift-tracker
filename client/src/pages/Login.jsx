@@ -32,13 +32,13 @@ const LoginPage = (props) => {
             body: JSON.stringify(loginCreds)
         })
 
-        // const authResult = await authCheck.json()
         const authResult = await authCheck.json()
 
         // If the login was good, save the returned token as a cookie
         if (authResult.result === "success") {
             Cookie.set("auth-token", authResult.token)
             setFormMessage({ type: "success", msg: "Your login was successful. Proceed!" })
+            window.location.href = '/'
         } else {
             setFormMessage({ type: "error", msg: "We could not log you in with the credentials provided." })
         }
@@ -105,8 +105,8 @@ const LoginPage = (props) => {
                     formMessage.msg.length > 0 && (
                         <Alert status={formMessage.type}>
                             <AlertIcon />
-                            <AlertTitle>Login Failed!</AlertTitle>
-                            <AlertDescription>{formMessage.msg}.</AlertDescription>
+                            <AlertTitle>Login {formMessage.type}!</AlertTitle>
+                            <AlertDescription>{formMessage.msg}</AlertDescription>
                         </Alert>
                     )
                 }

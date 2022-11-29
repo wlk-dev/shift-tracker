@@ -9,9 +9,10 @@ require("dotenv").config()
 const createUser = async (req, res) => {
   try {
     const createQuery = await User.create(req.body);
-    res.status(200).json(sample);
+    res.status(200).json({result : "sucess"});
   } catch(err) {
-    res.status(400).json({ message: 'Unable to create user' });
+    console.trace(err)
+    res.status(400).json({ result : "error", message: 'Unable to create user' });
   }
 }
   
