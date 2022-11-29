@@ -20,16 +20,17 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import Cookie from "js-cookie"
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const [loginCreds, setLoginCreds] = useState({ email: "", password: "" });
+  const [signUpCreds, setSignUpCreds] = useState({ fname: "", lname: "", email: "", password: "" });
 
   const [formMessage, setFormMessage] = useState({ type: "", msg: "" })
 
   function validateCreds() {
-    const { email, password } = loginCreds
+    const { email, password } = signUpCreds
     const valid = { email: false, password: false }
 
     const eReg = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -63,8 +64,23 @@ const Signup = () => {
       setFormMessage({ type: "error", msg: "Not a valid password." })
       return
     }
-    
-    setLoginCreds({ email: "", password: "" })
+
+    const createUser = await fetch("/api/user/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(signUpCreds)
+    })
+
+    const authResult = await createUser.json()
+
+    if (authResult.result === "success") {
+      Cookie.set("auth-token", authResult.token)
+      window.location.href = '/'
+    } else {
+      setFormMessage({ type: "error", msg: "We could not sign you up with the credentials provided, make sure all fields are filled out." })
+    }
+
+    setSignUpCreds({ fname: "", lname: "", email: "", password: "" })
   }
 
   return (
@@ -89,24 +105,42 @@ const Signup = () => {
               <Box>
                 <FormControl id="firstName" isRequired>
                   <FormLabel>First Name</FormLabel>
-                  <Input type="text" />
+                  <Input type="text"
+                    name='fname'
+                    placeholder='John'
+                    value={signUpCreds.fname}
+                    onChange={(e) => setSignUpCreds({ ...signUpCreds, [e.target.name]: e.target.value })}
+                  />
                 </FormControl>
               </Box>
               <Box>
-                <FormControl id="lastName">
+                <FormControl id="lastName" isRequired>
                   <FormLabel>Last Name</FormLabel>
-                  <Input type="text" />
+                  <Input type="text"
+                    name='lname'
+                    placeholder='Doe'
+                    value={signUpCreds.lname}
+                    onChange={(e) => setSignUpCreds({ ...signUpCreds, [e.target.name]: e.target.value })} />
                 </FormControl>
               </Box>
             </HStack>
             <FormControl id="email" isRequired>
               <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <Input type="email"
+                name='email'
+                placeholder='email@service.com'
+                value={signUpCreds.email}
+                onChange={(e) => setSignUpCreds({ ...signUpCreds, [e.target.name]: e.target.value })}
+              />
             </FormControl>
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
               <InputGroup>
-                <Input type={showPassword ? 'text' : 'password'} />
+                <Input type={showPassword ? 'text' : 'password'}
+                  name='password'
+                  value={signUpCreds.password}
+                  onChange={(e) => setSignUpCreds({ ...signUpCreds, [e.target.name]: e.target.value })}
+                />
                 <InputRightElement h={'full'}>
                   <Button
                     variant={'ghost'}
@@ -143,7 +177,7 @@ const Signup = () => {
             <Alert status={formMessage.type}>
               <AlertIcon />
               <AlertTitle>Sign Up Failed!</AlertTitle>
-              <AlertDescription>{formMessage.msg}.</AlertDescription>
+              <AlertDescription>{formMessage.msg}</AlertDescription>
             </Alert>
           )
         }
