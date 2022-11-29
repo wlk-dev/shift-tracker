@@ -15,24 +15,10 @@ const EmpTL = (props) => {
       id: 1,
       group: 1,
       title: 'Working',
-      start_time: moment(),
-      end_time: moment().add(8, 'hour'),
+      start_time: moment.unix(1669730400),
+      end_time: moment.unix(1669730400).add(8, 'hour'),
       canMove: true,
     },
-    {
-      id: 2,
-      group: 1,
-      title: 'item 2',
-      start_time: moment().add(-0.5, 'hour'),
-      end_time: moment().add(0.5, 'hour')
-    },
-    {
-      id: 3,
-      group: 1,
-      title: 'item 3',
-      start_time: moment().add(2, 'hour'),
-      end_time: moment().add(3, 'hour')
-    }
   ]
 
   return (
