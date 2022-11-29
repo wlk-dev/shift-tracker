@@ -1,7 +1,9 @@
 {
+  
   "name": "shift-tracker",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://localhost:3001/",
   "dependencies": {
     "@chakra-ui/icons": "^2.0.12",
     "@chakra-ui/react": "^2.4.1",

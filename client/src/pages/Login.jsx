@@ -22,41 +22,9 @@ const LoginPage = (props) => {
     const [loginCreds, setLoginCreds] = useState({ email: "", password: "" })
     const [formMessage, setFormMessage] = useState({ type: "", msg: "" })
 
-    function validateCreds() {
-        const { email, password } = loginCreds
-        const valid = { email: false, password: false }
-
-        const eReg = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-        const pReg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/
-
-        if (!eReg.test(email)) {
-            return valid
-        }
-        valid.email = true
-
-        if (!pReg.test(password)) {
-            return valid
-        }
-        valid.password = true
-
-        return valid
-    }
-
     const handleLogin = async (e) => {
         e.preventDefault()
         setFormMessage({ type: "", msg: "" })
-
-        const validCreds = validateCreds()
-
-        if (!validCreds.email) {
-            setFormMessage({ type: "error", msg: "Not a valid email." })
-            return
-        }
-
-        if (!validCreds.password) {
-            setFormMessage({ type: "error", msg: "Not a valid password." })
-            return
-        }
 
         const authCheck = await fetch("/api/user/auth", {
             method: "POST",
@@ -65,11 +33,11 @@ const LoginPage = (props) => {
         })
 
         // const authResult = await authCheck.json()
-        const authResult = { result: "failed" }
+        const authResult = await authCheck.json()
 
         // If the login was good, save the returned token as a cookie
         if (authResult.result === "success") {
-            // Cookie.set("auth-token", authResult.token)
+            Cookie.set("auth-token", authResult.token)
             setFormMessage({ type: "success", msg: "Your login was successful. Proceed!" })
         } else {
             setFormMessage({ type: "error", msg: "We could not log you in with the credentials provided." })
