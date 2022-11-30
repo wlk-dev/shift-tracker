@@ -8,7 +8,6 @@ function Schedule() {
         <div>
             <Header/>
             <AllEmpTL />
-            <ProfileTileMenu />
         </div>
     )
 }

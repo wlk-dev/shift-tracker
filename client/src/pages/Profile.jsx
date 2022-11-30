@@ -28,7 +28,6 @@ function Profile() {
                 </GridItem>
             </Grid>
             <EmpTL />
-            <ProfileTileMenu/>
         </div>
     )
 }
