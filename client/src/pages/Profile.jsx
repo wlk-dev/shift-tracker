@@ -8,7 +8,7 @@ import Header from "../components/Header";
 function Profile() {
 
     return (
-        <div>
+        <div style={{ backgroundColor: "whitesmoke" }}>
             <Header/>
             <Grid
                 templateAreas={`"nav main"`}
@@ -20,10 +20,10 @@ function Profile() {
                 fontWeight='bold'
                 style={{paddingBottom: '5px', paddingTop: '5px',}}
                 >
-                <GridItem pl='2' bg='#B388EB' area={'nav'}>
+                <GridItem pl='2' bg='#DEB887' area={'nav'}>
                     <ProfileCard />
                 </GridItem>
-                <GridItem pl='2' h='' bg='#B388EB' area={'main'}>
+                <GridItem pl='2' h='' bg='#DEB887' area={'main'}>
                     <ProfileContact/>
                 </GridItem>
             </Grid>

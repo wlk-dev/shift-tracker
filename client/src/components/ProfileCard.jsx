@@ -1,5 +1,6 @@
 import React from "react";
 import { useAppContext } from "../utils/AppContext";
+import UpdateModal from "./UpdateUser";
 import { 
     Card,
     CardBody, 

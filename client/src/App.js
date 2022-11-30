@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react'
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { ChakraProvider } from '@chakra-ui/react'
-import { AppProvider } from "./utils/AppContext";
+import { useEffect } from 'react'
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom"
+import { useAppContext } from "./utils/AppContext"
 
 import Signup from "./pages/Signup"
 import Login from "./pages/Login"
@@ -12,17 +11,20 @@ import Schedule from "./pages/Schedule"
 import './App.css';
 
 function App() {
-  const [authUser, setAuthUser] = useState(null)
+  const {setAppState} = useAppContext()
+
+  const navigate = useNavigate()
+  const location = useLocation();
 
   const checkForValidUser = async () => {
     const authCheck = await fetch("/api/user/lookup")
     const checkResult = await authCheck.json()
     if (checkResult && checkResult.result === "success") {
-      setAuthUser(checkResult.payload)
+      setAppState({userData : checkResult.payload})
     } else {
-      const currentPath = window.location.pathname
-      if (!["/login", "/signup"].includes(currentPath) ){
-        window.location.href = "/login"
+      const currentPath = location.pathname
+      if (!["/login", "/signup"].includes(currentPath)) {
+        navigate("/login")
       }
     }
   }
@@ -46,7 +48,6 @@ function App() {
         </BrowserRouter>
       </AppProvider>
     </ChakraProvider>
-
   );
 }
 

@@ -9,12 +9,33 @@ require("dotenv").config()
 const createUser = async (req, res) => {
   try {
     const createQuery = await User.create(req.body);
-    res.status(200).json({result : "sucess"});
+    await authenticateLogin(req, res)
   } catch(err) {
     console.trace(err)
     res.status(400).json({ result : "error", message: 'Unable to create user' });
   }
 }
+
+
+//needs work
+const updateUser = async (req, res) =>{
+  try{
+    let updatedUser = await User.updateOne(
+        {
+            email: req.body.email
+        },
+        {
+            where: {
+                email: req.body.email
+            }
+        }
+    );
+     res.status(200).json({ result: 'success', payload: updatedUser});
+   } catch(err){
+    res.status(500).json({message: 'Unable to update user'});
+   }
+}
+
   
 const getAllUsers = async (req, res) => {
   try {
@@ -37,11 +58,11 @@ const getUserById = async (req, res) => {
 const authenticateLogin = async (req, res) => {
   // First see if we have a user with the supplied email address 
   const foundUser = await User.findOne({ email: req.body.email })
-  if( !foundUser ) return res.status(401).json({ message: "Login failed." })
+  if( !foundUser ) return res.status(401).json({ message: "Login failed, bad email." })
 
   // Now compare the supplied password w/ the hashed password
   const isValid = await bcrypt.compare(req.body.password, foundUser.password)
-  if( !isValid ) return res.status(401).json({ message: "Login failed." })
+  if( !isValid ) return res.status(401).json({ message: "Login failed, bad password." })
 
   // If we have a match, we will send back a token (line 43 extracts the password key from the foundUser object)
   const { password, ...modifiedUser } = foundUser
@@ -72,7 +93,7 @@ const lookupUserByToken = async (req, res) => {
   const user = await User.findById(isVerified._id)
   if( !user ) return res.status(401).json({msg: "un-authorized"})
 
-  return res.status(200).json({ result: "success", payload: { _id: user._id, email: user.email } })
+  return res.status(200).json({ result: "success", payload: { _id: user._id, fname : user.fname, lname : user.lname, email: user.email, contactNum : user.contactNum, mgr : user.mgr} })
 }
 
 module.exports = { 
@@ -80,5 +101,6 @@ module.exports = {
   getAllUsers,
   getUserById,
   authenticateLogin,
-  lookupUserByToken
+  lookupUserByToken,
+  updateUser
 }
