@@ -1,6 +1,6 @@
 const router = require('express').Router()
 
-const { getAllManagers, getManagerById, createManager, authenticateLogin, lookupManagerByToken, updateManager } = require('../../controllers/user-controller')
+const { getAllManagers, getManagerById, createManager, authenticateLogin, lookupManagerByToken, updateManager } = require('../../controllers/manager-controller')
 
 router.route('/').get(getAllManagers)
 router.route('/').post(createManager)

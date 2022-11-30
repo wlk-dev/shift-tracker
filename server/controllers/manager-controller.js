@@ -24,14 +24,14 @@ const updateManager = async (req, res) => {
             {
                 email: req.body.email,
                 fname: req.body.fname,
-                lname: req.body.lanem,
+                lname: req.body.lname,
                 contactNum: req.body.contactNum,
             },
             {
                 where: {
                     email: req.body.email,
                     fname: req.body.fname,
-                    lname: req.body.lanem,
+                    lname: req.body.lname,
                     contactNum: req.body.contactNum,
                 }
             }
@@ -99,7 +99,7 @@ const lookupManagerByToken = async (req, res) => {
     const manager = await Manager.findById(isVerified._id)
     if (!user) return res.status(401).json({ msg: "un-authorized" })
 
-    return res.status(200).json({ result: "success", payload: { _id: user._id, email: user.email } })
+    return res.status(200).json({ result: "success", payload: { _id: manager._id, email: manager.email } })
 }
 
 module.exports = {

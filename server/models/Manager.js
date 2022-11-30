@@ -5,9 +5,9 @@ const ManagerSchema = new Schema({
     fname: { type: String },
     lname: { tpye: String },
     mgr: { type: Boolean },
-    email: { type: string },
+    email: { type: String },
     contactNum: {
-        type: Number,
+        type: String,
         validate: {
             validator: function (v) {
                 return /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/.test(v);
