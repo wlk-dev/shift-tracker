@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Routes, Route, useNavigate } from "react-router-dom"
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom"
 
 import Signup from "./pages/Signup"
 import Login from "./pages/Login"
@@ -13,6 +13,7 @@ import './App.css';
 function App() {
   const [authUser, setAuthUser] = useState(null)
   const navigate = useNavigate()
+  const location = useLocation();
 
   const checkForValidUser = async () => {
     const authCheck = await fetch("/api/user/lookup")
@@ -20,7 +21,7 @@ function App() {
     if (checkResult && checkResult.result === "success") {
       setAuthUser(checkResult.payload)
     } else {
-      const currentPath = window.location.pathname
+      const currentPath = location.pathname
       if (!["/login", "/signup"].includes(currentPath)) {
         navigate("/login")
       }
