@@ -22,6 +22,7 @@ function App() {
       setAuthUser(checkResult.payload)
     } else {
       const currentPath = location.pathname
+      console.log(currentPath)
       if (!["/login", "/signup"].includes(currentPath)) {
         navigate("/login")
       }
