@@ -21,8 +21,12 @@ import {
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import Cookie from "js-cookie"
+import {useNavigate } from "react-router-dom"
+
 
 const Signup = () => {
+  const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false);
 
   const [signUpCreds, setSignUpCreds] = useState({ fname: "", lname: "", email: "", password: "" });
@@ -75,7 +79,7 @@ const Signup = () => {
 
     if (authResult.result === "success") {
       Cookie.set("auth-token", authResult.token)
-      window.location.href = '/'
+      navigate("/")
     } else {
       setFormMessage({ type: "error", msg: "We could not sign you up with the credentials provided, make sure all fields are filled out." })
     }
