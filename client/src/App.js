@@ -8,8 +8,7 @@ import Login from "./pages/Login"
 import Profile from "./pages/Profile"
 import Home from "./pages/Home"
 import PageNotFound from "./pages/404"
-import AllEmpTL from "./pages/AllEmpTL"
-import EmpTL from "./pages/EmpTL"
+import Schedule from "./pages/Schedule"
 import './App.css';
 
 function App() {
@@ -22,7 +21,7 @@ function App() {
       setAuthUser(checkResult.payload)
     } else {
       const currentPath = window.location.pathname
-      if (!["/login", "signup"].includes(currentPath) ){
+      if (!["/login", "/signup"].includes(currentPath) ){
         window.location.href = "/login"
       }
     }
@@ -41,8 +40,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/schedule" element={<AllEmpTL />} />
-            <Route path="/empschedule" element={<EmpTL />} />
+            <Route path="/schedule" element={<Schedule />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </BrowserRouter>

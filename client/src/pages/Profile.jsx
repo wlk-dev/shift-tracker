@@ -2,6 +2,7 @@ import ProfileContact from "../components/ProfileContact";
 import ProfileCard from "../components/ProfileCard";
 import { Grid, GridItem } from '@chakra-ui/react'
 import ProfileTileMenu from "../components/ProfileTileMenu";
+import EmpTL from "../components/EmpTL"
 import Header from "../components/Header";
 
 function Profile() {
@@ -26,6 +27,7 @@ function Profile() {
                     <ProfileContact/>
                 </GridItem>
             </Grid>
+            <EmpTL />
             <ProfileTileMenu/>
         </div>
     )
