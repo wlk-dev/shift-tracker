@@ -1,4 +1,6 @@
 import {
+  NumberInput,
+  NumberInputField,
   Flex,
   Box,
   FormControl,
@@ -21,7 +23,7 @@ import {
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import Cookie from "js-cookie"
-import {useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 
 const Signup = () => {
@@ -29,16 +31,17 @@ const Signup = () => {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const [signUpCreds, setSignUpCreds] = useState({ fname: "", lname: "", email: "", password: "" });
+  const [signUpCreds, setSignUpCreds] = useState({ fname: "", lname: "", email: "", password: "", phoneNum: "" });
 
   const [formMessage, setFormMessage] = useState({ type: "", msg: "" })
 
   function validateCreds() {
-    const { email, password } = signUpCreds
-    const valid = { email: false, password: false }
+    const { email, password, phoneNum } = signUpCreds
+    const valid = { email: false, password: false, phoneNum: false }
 
     const eReg = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    const pReg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/
+    const pReg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/;
+    const phReg = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
 
     if (!eReg.test(email)) {
       return valid
@@ -49,6 +52,10 @@ const Signup = () => {
       return valid
     }
     valid.password = true
+
+    if (!phReg.test(phoneNum)) {
+      return valid
+    }
 
     return valid
   }
@@ -69,6 +76,11 @@ const Signup = () => {
       return
     }
 
+    if (!validCreds.phoneNum) {
+      setFormMessage({ type: "error", msg: "Not a valid phone number." })
+      return
+    }
+
     const createUser = await fetch("/api/user/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -84,7 +96,7 @@ const Signup = () => {
       setFormMessage({ type: "error", msg: "We could not sign you up with the credentials provided, make sure all fields are filled out." })
     }
 
-    setSignUpCreds({ fname: "", lname: "", email: "", password: "" })
+    setSignUpCreds({ fname: "", lname: "", email: "", password: "", phoneNum: "" })
   }
 
   return (
@@ -128,6 +140,17 @@ const Signup = () => {
                 </FormControl>
               </Box>
             </HStack>
+            <FormControl id="phoneNum" isRequired>
+              <FormLabel>Phone number</FormLabel>
+              <NumberInput>
+                <NumberInputField type="phoneNum"
+                  name='phoneNum'
+                  placeholder='000-000-0000'
+                  value={signUpCreds.phoneNum}
+                  onChange={(e) => setSignUpCreds({ ...signUpCreds, [e.target.name]: e.target.value })}
+                />
+              </NumberInput>
+            </FormControl>
             <FormControl id="email" isRequired>
               <FormLabel>Email address</FormLabel>
               <Input type="email"
