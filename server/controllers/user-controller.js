@@ -25,7 +25,7 @@ const updateUser = async (req, res) =>{
           id: req.params.id
         },
         {
-           fname: req.body.fname
+           ...req.body
         }
     );
      res.status(200).json({ result: 'success', payload: updatedUser});

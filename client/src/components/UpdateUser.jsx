@@ -19,22 +19,22 @@ import {
 
     function UpdateUser() {
 
-      const [firstName, setFirstName] = useState({name: ""})
+      const [updateData, setUserData] = useState({fname: "", lname: "", email: '', contactNum: ''})
 
-      const updateUser = async (e) =>{
-        e.preventDefault()
+      const updateUser = async () =>{
+
+        setAppState({userData: updateData})
 
         const update = await fetch('/api/user/:id', {
           method: 'PUT',
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(firstName)
+          body: JSON.stringify(appState.userData)
         })
 
         const updateResult = await update.json()
       }
         
-        const appCtx = useAppContext();
-        const state = appCtx.appState
+        const {appState, setAppState} = useAppContext()
 
 
         const { isOpen, onOpen, onClose } = useDisclosure()
@@ -61,14 +61,49 @@ import {
               <ModalContent>
                 <ModalCloseButton />
                 <ModalBody pb={6}>
-                  <FormControl action='/user/:id' method='put'>
+                  <FormControl  >
                     <FormLabel>First name</FormLabel>
-                    <Input ref={initialRef} placeholder={state.userData.name}  />
+                    <Input ref={initialRef}
+                    type='text'
+                    name='fname'
+                    value={updateData.fname}
+                    onChange={(e)=> setUserData({...updateData, [e.target.name]: e.target.value})}
+                    placeholder={appState.userData.fname}  />
+                  </FormControl>
+                  <FormControl  >
+                    <FormLabel>Last name</FormLabel>
+                    <Input ref={initialRef}
+                    type='text'
+                    name='lname'
+                    value={updateData.lname}
+                    onChange={(e)=> setUserData({...updateData, [e.target.name]: e.target.value})}
+                    placeholder={appState.userData.lname}  />
+                  </FormControl>
+                  <FormControl  >
+                    <FormLabel>Email</FormLabel>
+                    <Input ref={initialRef}
+                    type='email'
+                    name='email'
+                    value={updateData.email}
+                    onChange={(e)=> setUserData({...updateData, [e.target.name]: e.target.value})}
+                    placeholder={appState.userData.email}  />
+                  </FormControl>
+                  <FormControl  >
+                    <FormLabel>Phone Number</FormLabel>
+                    <Input ref={initialRef}
+                    type='text'
+                    name='contactNum'
+                    value={updateData.contactNum}
+                    onChange={(e)=> setUserData({...updateData, [e.target.name]: e.target.value})}
+                    placeholder={appState.userData.contactNum}  />
                   </FormControl>
                 </ModalBody>
       
                 <ModalFooter>
-                  <Button type='submit' colorScheme='blue' mr={3}>
+                  <Button type='submit' onClick={()=>{
+                    updateUser()
+                    onClose()
+                  }} colorScheme='blue' mr={3}>
                     Save
                   </Button>
                   <Button onClick={onClose}>Close</Button>

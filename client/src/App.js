@@ -34,20 +34,15 @@ function App() {
   }, [])
 
   return (
-    <ChakraProvider>
-      <AppProvider>
-        <BrowserRouter>
+
           <Routes>
-            <Route path="/" element={<Home authUser={authUser} />} />
+            <Route path="/" element={<Home />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/schedule" element={<Schedule />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
-        </BrowserRouter>
-      </AppProvider>
-    </ChakraProvider>
   );
 }
 
