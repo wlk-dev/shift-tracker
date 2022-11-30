@@ -8,8 +8,10 @@ import {
 } from '@chakra-ui/react';
 
 import err from '../img/err.png'
+import {useNavigate } from "react-router-dom"
 
 const PageNotFound = (props) => {
+  const navigate = useNavigate();
 
   return (
     <Flex
@@ -36,7 +38,7 @@ const PageNotFound = (props) => {
               rounded={'full'}
               color={'white'}
               _hover={{ bg: 'green.800' }}
-              onClick={() => {window.location.href = '/'}}>
+              onClick={() => {navigate('/')}}>
               Take me home
             </Button>
           </Stack>

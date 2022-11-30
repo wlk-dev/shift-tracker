@@ -12,15 +12,7 @@ function Home() {
     return (
         // Grid Component
         <div style={{ backgroundColor: "whitesmoke" }}>
-
-            <Box backgroundColor={'black'}>
-                <Card>
-                    <CardHeader>
-                        <Heading color={"white"} size='md'>Welcome back, {state.userData.name}</Heading>
-                    </CardHeader>
-                </Card>
-
-            </Box>
+            <Header/>
 
             {/* {state.userData.isManager && (
                 <p> [show manager stuff] </p>
