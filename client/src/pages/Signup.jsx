@@ -1,4 +1,6 @@
 import {
+  NumberInput,
+  NumberInputField,
   Flex,
   Box,
   FormControl,
@@ -21,7 +23,7 @@ import {
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import Cookie from "js-cookie"
-import {useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 
 const Signup = () => {
@@ -140,12 +142,14 @@ const Signup = () => {
             </HStack>
             <FormControl id="phoneNum" isRequired>
               <FormLabel>Phone number</FormLabel>
-              <Input type="phoneNum"
-                name='phoneNum'
-                placeholder='000-000-0000'
-                value={signUpCreds.phoneNum}
-                onChange={(e) => setSignUpCreds({ ...signUpCreds, [e.target.name]: e.target.value })}
-              />
+              <NumberInput>
+                <NumberInputField type="phoneNum"
+                  name='phoneNum'
+                  placeholder='000-000-0000'
+                  value={signUpCreds.phoneNum}
+                  onChange={(e) => setSignUpCreds({ ...signUpCreds, [e.target.name]: e.target.value })}
+                />
+              </NumberInput>
             </FormControl>
             <FormControl id="email" isRequired>
               <FormLabel>Email address</FormLabel>
