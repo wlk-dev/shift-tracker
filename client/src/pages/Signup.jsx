@@ -31,13 +31,13 @@ const Signup = () => {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const [signUpCreds, setSignUpCreds] = useState({ fname: "", lname: "", email: "", password: "", phoneNum: "" });
+  const [signUpCreds, setSignUpCreds] = useState({ fname: "", lname: "", email: "", password: "", contactNum: "" });
 
   const [formMessage, setFormMessage] = useState({ type: "", msg: "" })
 
   function validateCreds() {
-    const { email, password, phoneNum } = signUpCreds
-    const valid = { email: false, password: false, phoneNum: false }
+    const { email, password, contactNum } = signUpCreds
+    const valid = { email: false, password: false, contactNum: false }
 
     const eReg = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     const pReg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/;
@@ -53,11 +53,11 @@ const Signup = () => {
     }
     valid.password = true
 
-    if (!phReg.test(phoneNum)) {
+    if (!phReg.test(contactNum)) {
       return valid
     }
 
-    valid.phoneNum = true
+    valid.contactNum = true
 
     return valid
   }
@@ -78,7 +78,7 @@ const Signup = () => {
       return
     }
 
-    if (!validCreds.phoneNum) {
+    if (!validCreds.contactNum) {
       setFormMessage({ type: "error", msg: "Not a valid phone number." })
       return
     }
@@ -98,7 +98,7 @@ const Signup = () => {
       setFormMessage({ type: "error", msg: "We could not sign you up with the credentials provided, make sure all fields are filled out." })
     }
 
-    setSignUpCreds({ fname: "", lname: "", email: "", password: "", phoneNum: "" })
+    setSignUpCreds({ fname: "", lname: "", email: "", password: "", contactNum: "" })
   }
 
   return (
@@ -142,13 +142,13 @@ const Signup = () => {
                 </FormControl>
               </Box>
             </HStack>
-            <FormControl id="phoneNum" isRequired>
+            <FormControl id="contactNum" isRequired>
               <FormLabel>Phone number</FormLabel>
               <NumberInput>
-                <NumberInputField type="phoneNum"
-                  name='phoneNum'
+                <NumberInputField type="contactNum"
+                  name='contactNum'
                   placeholder='000-000-0000'
-                  value={signUpCreds.phoneNum}
+                  value={signUpCreds.contactNum}
                   onChange={(e) => setSignUpCreds({ ...signUpCreds, [e.target.name]: e.target.value })}
                 />
               </NumberInput>
