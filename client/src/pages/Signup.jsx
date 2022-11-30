@@ -57,6 +57,8 @@ const Signup = () => {
       return valid
     }
 
+    valid.phoneNum = true
+
     return valid
   }
 
