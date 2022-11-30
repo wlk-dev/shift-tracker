@@ -1,6 +1,6 @@
 import React from "react"
 import ProfileTile from "./ProfileTile"
-import { faHouse, faCircleUser, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faCircleUser, faArrowRightFromBracket, faCalendarDays } from '@fortawesome/free-solid-svg-icons'
 import { background, SimpleGrid } from '@chakra-ui/react'
 import { useAppContext } from "../utils/AppContext"
 
@@ -26,6 +26,12 @@ export default function ProfileTileMenu() {
             goTo : '/profile',
             icon : faCircleUser,
             exec : () => {}
+        },
+        {
+            txt : "Schedule",
+            goTo : '/schedule',
+            icon : faCalendarDays,
+            exec : logout
         },
         {
             goTo : '/login',
