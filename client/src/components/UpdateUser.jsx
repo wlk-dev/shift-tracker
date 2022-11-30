@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react"
 import { useAppContext } from "../utils/AppContext";
 import {
     Modal,
@@ -15,23 +16,40 @@ import {
     Input
   } from '@chakra-ui/react'
 
-const UpdateModal = () =>{
 
-    const appCtx = useAppContext();
-    const state = appCtx.appState
+    function UpdateUser() {
 
-    function InitialFocus() {
+      const [updateData, setUserData] = useState({fname: "", lname: "", email: '', contactNum: ''})
+
+      const updateUser = async () =>{
+
+        setAppState({userData: updateData})
+
+        const update = await fetch('/api/user/:id', {
+          method: 'PUT',
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(appState.userData)
+        })
+
+        const updateResult = await update.json()
+      }
+        
+        const {appState, setAppState} = useAppContext()
+
+
         const { isOpen, onOpen, onClose } = useDisclosure()
       
         const initialRef = React.useRef(null)
         const finalRef = React.useRef(null)
+        const buttonStyle={
+          backgroundColor: '#333',
+          color: 'whitesmoke',
+          margin: '5px' 
+        }
       
         return (
           <>
-            <Button onClick={onOpen}>Open Modal</Button>
-            <Button ml={4} ref={finalRef}>
-              I'll receive focus on close
-            </Button>
+            <Button style={buttonStyle} onClick={onOpen}>Edit Profile</Button>
       
             <Modal
               initialFocusRef={initialRef}
@@ -41,32 +59,60 @@ const UpdateModal = () =>{
             >
               <ModalOverlay />
               <ModalContent>
-                <ModalHeader>Create your account</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody pb={6}>
-                  <FormControl>
+                  <FormControl  >
                     <FormLabel>First name</FormLabel>
-                    <Input ref={initialRef} placeholder='First name' />
+                    <Input ref={initialRef}
+                    type='text'
+                    name='fname'
+                    value={updateData.fname}
+                    onChange={(e)=> setUserData({...updateData, [e.target.name]: e.target.value})}
+                    placeholder={appState.userData.fname}  />
                   </FormControl>
-      
-                  <FormControl mt={4}>
+                  <FormControl  >
                     <FormLabel>Last name</FormLabel>
-                    <Input placeholder='Last name' />
+                    <Input ref={initialRef}
+                    type='text'
+                    name='lname'
+                    value={updateData.lname}
+                    onChange={(e)=> setUserData({...updateData, [e.target.name]: e.target.value})}
+                    placeholder={appState.userData.lname}  />
+                  </FormControl>
+                  <FormControl  >
+                    <FormLabel>Email</FormLabel>
+                    <Input ref={initialRef}
+                    type='email'
+                    name='email'
+                    value={updateData.email}
+                    onChange={(e)=> setUserData({...updateData, [e.target.name]: e.target.value})}
+                    placeholder={appState.userData.email}  />
+                  </FormControl>
+                  <FormControl  >
+                    <FormLabel>Phone Number</FormLabel>
+                    <Input ref={initialRef}
+                    type='text'
+                    name='contactNum'
+                    value={updateData.contactNum}
+                    onChange={(e)=> setUserData({...updateData, [e.target.name]: e.target.value})}
+                    placeholder={appState.userData.contactNum}  />
                   </FormControl>
                 </ModalBody>
       
                 <ModalFooter>
-                  <Button colorScheme='blue' mr={3}>
+                  <Button type='submit' onClick={()=>{
+                    updateUser()
+                    onClose()
+                  }} colorScheme='blue' mr={3}>
                     Save
                   </Button>
-                  <Button onClick={onClose}>Cancel</Button>
+                  <Button onClick={onClose}>Close</Button>
                 </ModalFooter>
               </ModalContent>
             </Modal>
           </>
         )
       }
-    
-}
 
-export default UpdateModal
+
+export default UpdateUser
