@@ -1,6 +1,4 @@
 import {
-  NumberInput,
-  NumberInputField,
   Flex,
   Box,
   FormControl,
@@ -144,14 +142,21 @@ const Signup = () => {
             </HStack>
             <FormControl id="contactNum" isRequired>
               <FormLabel>Phone number</FormLabel>
-              <NumberInput>
-                <NumberInputField type="contactNum"
+                <Input type="tel"
                   name='contactNum'
                   placeholder='000-000-0000'
                   value={signUpCreds.contactNum}
-                  onChange={(e) => setSignUpCreds({ ...signUpCreds, [e.target.name]: e.target.value })}
+                  onChange={(e) => {
+                    let val = e.target.value.replace(/([a-z])$/, '')
+                    if ([3, 7].includes(val.length) && ![4, 8].includes(signUpCreds.contactNum.length)) { // add a dash if length is 3, allow user to delete and not auto-add if length is 4
+                      val += "-"
+                    }
+                    
+                    if(val.length <= 12 ) { // don't allow phone numbers longer than 12 characters(including dashes)
+                      setSignUpCreds({ ...signUpCreds, [e.target.name]: val })
+                    }
+                  }}
                 />
-              </NumberInput>
             </FormControl>
             <FormControl id="email" isRequired>
               <FormLabel>Email address</FormLabel>
