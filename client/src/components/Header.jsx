@@ -12,7 +12,7 @@ const Header = () =>{
         <Box backgroundColor={'black'}>
             <Card>
                 <CardHeader>
-                    <Heading color={"white"} size='md'>Welcome back, {state.userData.name}</Heading>
+                    <Heading color={"white"} size='md'>Welcome back, {state.userData.fname}</Heading>
                 </CardHeader>
             </Card>
         </Box>
