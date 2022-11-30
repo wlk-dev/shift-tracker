@@ -7,8 +7,7 @@ import Login from "./pages/Login"
 import Profile from "./pages/Profile"
 import Home from "./pages/Home"
 import PageNotFound from "./pages/404"
-import AllEmpTL from "./pages/AllEmpTL"
-import EmpTL from "./pages/EmpTL"
+import Schedule from "./pages/Schedule"
 import './App.css';
 
 function App() {
@@ -35,16 +34,20 @@ function App() {
   }, [])
 
   return (
-    <Routes>
-      <Route exact path="/" element={<Home />} />
-      <Route exact path="/signup" element={<Signup />} />
-      <Route exact path="/login" element={<Login />} />
-      <Route exact path="/profile" element={<Profile />} />
-      <Route exact path="/schedule" element={<AllEmpTL />} />
-      <Route exact path="/empschedule" element={<EmpTL />} />
-      <Route exact path="*" element={<PageNotFound />} />
-    </Routes>
-
+    <ChakraProvider>
+      <AppProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home authUser={authUser} />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/schedule" element={<Schedule />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </AppProvider>
+    </ChakraProvider>
   );
 }
 
