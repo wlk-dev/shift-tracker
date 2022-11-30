@@ -20,14 +20,12 @@ const createUser = async (req, res) => {
 //needs work
 const updateUser = async (req, res) =>{
   try{
-    let updatedUser = await User.updateOne(
+    let updatedUser = await User.findOneAndUpdate(
         {
-            email: req.body.email
+          id: req.params.id
         },
         {
-            where: {
-                email: req.body.email
-            }
+           ...req.body
         }
     );
      res.status(200).json({ result: 'success', payload: updatedUser});
