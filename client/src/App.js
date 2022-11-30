@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom"
+import { useAppContext } from "./utils/AppContext"
 
 import Signup from "./pages/Signup"
 import Login from "./pages/Login"
@@ -11,7 +12,8 @@ import EmpTL from "./pages/EmpTL"
 import './App.css';
 
 function App() {
-  const [authUser, setAuthUser] = useState(null)
+  const {setAppState} = useAppContext()
+
   const navigate = useNavigate()
   const location = useLocation();
 
@@ -19,10 +21,9 @@ function App() {
     const authCheck = await fetch("/api/user/lookup")
     const checkResult = await authCheck.json()
     if (checkResult && checkResult.result === "success") {
-      setAuthUser(checkResult.payload)
+      setAppState({userData : checkResult.payload})
     } else {
       const currentPath = location.pathname
-      console.log(currentPath)
       if (!["/login", "/signup"].includes(currentPath)) {
         navigate("/login")
       }
@@ -35,7 +36,7 @@ function App() {
 
   return (
     <Routes>
-      <Route exact path="/" element={<Home authUser={authUser} />} />
+      <Route exact path="/" element={<Home />} />
       <Route exact path="/signup" element={<Signup />} />
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/profile" element={<Profile />} />

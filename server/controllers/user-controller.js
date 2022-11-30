@@ -58,11 +58,11 @@ const getUserById = async (req, res) => {
 const authenticateLogin = async (req, res) => {
   // First see if we have a user with the supplied email address 
   const foundUser = await User.findOne({ email: req.body.email })
-  if( !foundUser ) return res.status(401).json({ message: "Login failed." })
+  if( !foundUser ) return res.status(401).json({ message: "Login failed, bad email." })
 
   // Now compare the supplied password w/ the hashed password
   const isValid = await bcrypt.compare(req.body.password, foundUser.password)
-  if( !isValid ) return res.status(401).json({ message: "Login failed." })
+  if( !isValid ) return res.status(401).json({ message: "Login failed, bad password." })
 
   // If we have a match, we will send back a token (line 43 extracts the password key from the foundUser object)
   const { password, ...modifiedUser } = foundUser
@@ -93,7 +93,7 @@ const lookupUserByToken = async (req, res) => {
   const user = await User.findById(isVerified._id)
   if( !user ) return res.status(401).json({msg: "un-authorized"})
 
-  return res.status(200).json({ result: "success", payload: { _id: user._id, email: user.email } })
+  return res.status(200).json({ result: "success", payload: { _id: user._id, fname : user.fname, lname : user.lname, email: user.email, contactNum : user.contactNum, mgr : user.mgr} })
 }
 
 module.exports = { 

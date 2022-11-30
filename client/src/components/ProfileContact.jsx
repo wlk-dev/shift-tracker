@@ -9,8 +9,11 @@ import {
     Box, 
     Text,
 } from '@chakra-ui/react'
+import { useAppContext } from "../utils/AppContext"
 
 const ProfileContact = (props) =>{
+
+    const {appState} = useAppContext()
 
     const cardStyle = {
         width: '100%',
@@ -31,7 +34,7 @@ const ProfileContact = (props) =>{
                         Phone Number:
                         </Heading>
                         <Text style={{ paddingLeft: '10px'}}fontSize='sm'>
-                        (123) 456-7890
+                        {appState.userData.contactNum}
                         </Text>
                     </Box>
                     <Box style={{ display: 'flex' }}>
@@ -39,7 +42,7 @@ const ProfileContact = (props) =>{
                         email:
                         </Heading>
                         <Text style={{ paddingLeft: '10px'}}fontSize='sm'>
-                        exampleEmail@email.com
+                        {appState.userData.email}
                         </Text>
                     </Box>
                     </Stack>
