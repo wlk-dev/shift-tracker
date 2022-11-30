@@ -4,7 +4,7 @@ const { getAllUsers, getUserById, createUser, authenticateLogin, lookupUserByTok
 
 router.route('/').get(getAllUsers)
 router.route('/').post(createUser)
-router.route('/').put(updateUser)
+router.route('/:id').put(updateUser)
 
 router.route("/auth").post(authenticateLogin)
 router.route("/lookup").get(lookupUserByToken)

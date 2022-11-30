@@ -15,12 +15,8 @@ import {
     Input
   } from '@chakra-ui/react'
 
-const UpdateModal = () =>{
 
-    const appCtx = useAppContext();
-    const state = appCtx.appState
-
-    function InitialFocus() {
+    function UpdateUser() {
         const { isOpen, onOpen, onClose } = useDisclosure()
       
         const initialRef = React.useRef(null)
@@ -28,10 +24,7 @@ const UpdateModal = () =>{
       
         return (
           <>
-            <Button onClick={onOpen}>Open Modal</Button>
-            <Button ml={4} ref={finalRef}>
-              I'll receive focus on close
-            </Button>
+            <Button onClick={onOpen}>Edit Profile</Button>
       
             <Modal
               initialFocusRef={initialRef}
@@ -66,7 +59,6 @@ const UpdateModal = () =>{
           </>
         )
       }
-    
-}
 
-export default UpdateModal
+
+export default UpdateUser
