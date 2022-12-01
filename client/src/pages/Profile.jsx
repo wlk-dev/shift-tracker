@@ -26,7 +26,9 @@ function Profile() {
       setReady(true)
     }
 
-    getUser()
+    if (appState.userData._id !== undefined) {
+      getUser()
+    }
   }, [appState])
 
   return (
@@ -49,7 +51,7 @@ function Profile() {
           <ProfileContact />
         </GridItem>
       </Grid>
-      {ready && (
+      {(ready) && (
         <EmpTL blah={myData} />
       )}
       <ProfileTileMenu />
