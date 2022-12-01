@@ -1,6 +1,4 @@
 import {
-  NumberInput,
-  NumberInputField,
   Flex,
   Box,
   FormControl,
@@ -24,9 +22,11 @@ import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import Cookie from "js-cookie"
 import { useNavigate } from "react-router-dom"
+import { useAppContext } from "../utils/AppContext"
 
 
 const Signup = () => {
+  const { setAppState } = useAppContext()
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -64,6 +64,7 @@ const Signup = () => {
 
   const handleSignup = async (e) => {
     e.preventDefault()
+    
     setFormMessage({ type: "", msg: "" })
 
     const validCreds = validateCreds()
@@ -93,12 +94,14 @@ const Signup = () => {
 
     if (authResult.result === "success") {
       Cookie.set("auth-token", authResult.token)
+      delete authResult.user._doc.password
+      setAppState({userData : {...authResult.user._doc} } )
       navigate("/")
     } else {
       setFormMessage({ type: "error", msg: "We could not sign you up with the credentials provided, make sure all fields are filled out." })
     }
 
-    setSignUpCreds({ fname: "", lname: "", email: "", password: "", contactNum: "" })
+    // setSignUpCreds({ fname: "", lname: "", email: "", password: "", contactNum: "" })
   }
 
   return (
@@ -144,14 +147,21 @@ const Signup = () => {
             </HStack>
             <FormControl id="contactNum" isRequired>
               <FormLabel>Phone number</FormLabel>
-              <NumberInput>
-                <NumberInputField type="contactNum"
+                <Input type="tel"
                   name='contactNum'
                   placeholder='000-000-0000'
                   value={signUpCreds.contactNum}
-                  onChange={(e) => setSignUpCreds({ ...signUpCreds, [e.target.name]: e.target.value })}
+                  onChange={(e) => {
+                    let val = e.target.value.replace(/([a-z])$/, '')
+                    if ([3, 7].includes(val.length) && ![4, 8].includes(signUpCreds.contactNum.length)) { // add a dash if length is 3, allow user to delete and not auto-add if length is 4
+                      val += "-"
+                    }
+                    
+                    if(val.length <= 12 ) { // don't allow phone numbers longer than 12 characters(including dashes)
+                      setSignUpCreds({ ...signUpCreds, [e.target.name]: val })
+                    }
+                  }}
                 />
-              </NumberInput>
             </FormControl>
             <FormControl id="email" isRequired>
               <FormLabel>Email address</FormLabel>

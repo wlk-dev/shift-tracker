@@ -32,15 +32,15 @@ function UpdateUser() {
         }
 
         setAppState({ userData: updateData })
-        setUserData({ fname: "", lname: "", email: '', contactNum: '' })
-
-        const update = await fetch('/api/user/:id', {
+    
+        const update = await fetch(`/api/user/${appState.userData._id}`, {
             method: 'PUT',
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(appState.userData)
+            body: JSON.stringify(updateData)
         })
-
-        const updateResult = await update.json()
+        
+        setUserData({ fname: "", lname: "", email: '', contactNum: '' })
+        // const updateResult = await update.json()
     }
 
     const { appState, setAppState } = useAppContext()
