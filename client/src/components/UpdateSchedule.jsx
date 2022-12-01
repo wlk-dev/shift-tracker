@@ -18,14 +18,10 @@ import {
 
 
 function AddShift() {
-  const {appState, setAppState} = useAppContext()
-
   const [updateData, setUserData] = useState({startTime: "", endTime: ""})
+  const { appState } = useAppContext();
 
   const addShift = async () =>{
-
-    console.log(updateData)
-    console.log(appState)
 
     const update = await fetch(`/api/shift/${appState.userData._id}`, {
       method: 'POST',

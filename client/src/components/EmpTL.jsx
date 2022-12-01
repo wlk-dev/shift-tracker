@@ -1,4 +1,6 @@
 import React from "react"
+import { useState } from "react"
+import { useAppContext } from "../utils/AppContext";
 
 import Timeline, {
   TimelineHeaders,
@@ -9,19 +11,26 @@ import Timeline, {
 import moment from 'moment'
 
 const EmpTL = (props) => {
+  const { appState } = useAppContext();
 
-  const employees = [{ id: 1, title: 'Emp 1' }]
+  console.log(appState)
 
-  const shifts = [
-    {
-      id: 1,
-      group: 1,
-      title: 'Working',
-      start_time: moment(props.blah.data[0].startTime),
-      end_time: moment(props.blah.data[0].endTime),
-      canMove: false,
-    },
-  ]
+  const shifts = []
+
+  const employees = [{ id: 1, title: `${appState.userData.fname}` }]
+
+  for (const key in props.blah.data) {
+    shifts.push(
+      {
+        id: key,
+        group: 1,
+        title: 'Working',
+        start_time: moment(props.blah.data[key].startTime),
+        end_time: moment(props.blah.data[key].endTime),
+        canMove: false,
+      }
+    )
+  }
 
   const timelineStyle = {
     margin : "1%",
