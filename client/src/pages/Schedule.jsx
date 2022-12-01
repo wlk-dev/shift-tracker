@@ -13,11 +13,13 @@ function Schedule() {
         const getShifts = async () => {
           const query = await fetch(`/api/shift/`, {
             method: "GET",
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+              "Content-Type": "application/json",
+              "Cache-Control": "max-age=1, stale-while-revalidate=59"
+            },
           })
     
           const qResult = await query.json()
-    
           setMyData({ data: { ...qResult.payload } })
           setReady(true)
         }
@@ -29,8 +31,12 @@ function Schedule() {
 
     return (
         <div>
-            <Header/>
-            <AllEmpTL data={myData}/>
+          { ready === true && (
+            <>
+              <Header/>
+              <AllEmpTL data={myData}/>
+            </>
+          )}
         </div>
     )
 }
