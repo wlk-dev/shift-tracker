@@ -10,7 +10,7 @@ import Timeline, {
 import moment from 'moment'
 
 const EmpTL = (props) => {
-  
+
   const employees = [{ id: 1, title: 'Emp 1' }]
 
   const shifts = [
@@ -18,8 +18,8 @@ const EmpTL = (props) => {
       id: 1,
       group: 1,
       title: 'Working',
-      start_time: moment.unix(1669730400),
-      end_time: moment.unix(1669730400).add(8, 'hour'),
+      start_time: moment(props.blah.data[0].startTime),
+      end_time: moment(props.blah.data[0].endTime),
       canMove: false,
     },
   ]

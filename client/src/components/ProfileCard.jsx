@@ -1,6 +1,7 @@
 import React from "react";
 import { useAppContext } from "../utils/AppContext";
 import UpdateUser from "./UpdateUser";
+import UpdateSchedule from "./UpdateSchedule";
 import { 
     Card,
     CardBody, 
@@ -37,6 +38,7 @@ const ProfileCard = (props) =>{
                     </Stack>
                 </CardBody>
                 <Divider />
+                <UpdateSchedule />
                 <UpdateUser/>
             </Card>
         </>
