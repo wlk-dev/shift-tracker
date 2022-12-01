@@ -43,7 +43,6 @@ const getAllUsers = async (req, res) => {
     res.status(400).json({ message: 'No users found' });
   }
 }
-console.log(getAllQuery)
 
 const getUserById = async (req, res) => {
   try {

@@ -4,19 +4,17 @@ Tr,
 Tbody,
 Td} from '@chakra-ui/react'
 
-const TableData = (props) =>{
+const ContactRow = (props) =>{
 
     const { fname, lname, contactNum, email } = props
 
     return(
-        <Tbody>
         <Tr>
             <Td>{fname} {lname}</Td>
             <Td>{contactNum}</Td>
             <Td isNumeric>{email}</Td>
         </Tr>
-        </Tbody>
     )
 }
 
-export default TableData
+export default ContactRow
