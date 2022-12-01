@@ -22,9 +22,11 @@ import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import Cookie from "js-cookie"
 import { useNavigate } from "react-router-dom"
+import { useAppContext } from "../utils/AppContext"
 
 
 const Signup = () => {
+  const { setAppState } = useAppContext()
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -92,6 +94,9 @@ const Signup = () => {
 
     if (authResult.result === "success") {
       Cookie.set("auth-token", authResult.token)
+      delete authResult.user._doc._id
+      delete authResult.user._doc.password
+      setAppState({userData : {...authResult.user._doc} } )
       navigate("/")
     } else {
       setFormMessage({ type: "error", msg: "We could not sign you up with the credentials provided, make sure all fields are filled out." })
