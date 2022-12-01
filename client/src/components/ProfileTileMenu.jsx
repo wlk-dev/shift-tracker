@@ -31,7 +31,7 @@ export default function ProfileTileMenu() {
             txt : "Schedule",
             goTo : '/schedule',
             icon : faCalendarDays,
-            exec : logout
+            exec : () => {}
         },
         {
             txt: "Contact",
