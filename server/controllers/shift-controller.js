@@ -9,6 +9,8 @@ require("dotenv").config()
 const createShift = async (req, res) => {
     try {
         const createQuery = await Shift.create({...req.body, user_id:req.params.id});
+        console.log("here");
+        res.status(200).json({ result: "success" })
     } catch (err) {
         console.trace(err)
         res.status(400).json({ result: "error", message: 'Unable to create shift' });

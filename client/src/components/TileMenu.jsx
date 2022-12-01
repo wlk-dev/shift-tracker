@@ -1,6 +1,6 @@
 import React from "react"
 import Tile from './Tile'
-import { faHouse, faCircleUser, faArrowRightFromBracket, faCalendarDays } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faCircleUser, faArrowRightFromBracket, faCalendarDays, faPhone } from '@fortawesome/free-solid-svg-icons'
 import { SimpleGrid } from '@chakra-ui/react'
 import { useAppContext } from "../utils/AppContext"
 
@@ -53,6 +53,12 @@ export default function TileMenu() {
             goTo : '/schedule',
             icon : faCalendarDays,
             exec : logout
+        },
+        {
+            txt: "Contact",
+            goTo: '/contact',
+            icon: faPhone,
+            exec: () => {}
         },
         {
             txt : "Logout",
