@@ -94,7 +94,6 @@ const Signup = () => {
 
     if (authResult.result === "success") {
       Cookie.set("auth-token", authResult.token)
-      delete authResult.user._doc._id
       delete authResult.user._doc.password
       setAppState({userData : {...authResult.user._doc} } )
       navigate("/")
