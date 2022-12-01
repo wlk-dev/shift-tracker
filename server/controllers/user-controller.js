@@ -17,7 +17,6 @@ const createUser = async (req, res) => {
 }
 
 
-//needs work
 const updateUser = async (req, res) =>{
   try{
     let updatedUser = await User.findOneAndUpdate(
@@ -43,6 +42,7 @@ const getAllUsers = async (req, res) => {
     res.status(400).json({ message: 'No users found' });
   }
 }
+console.log(getAllQuery)
 
 const getUserById = async (req, res) => {
   try {

@@ -8,6 +8,7 @@ import Profile from "./pages/Profile"
 import Home from "./pages/Home"
 import PageNotFound from "./pages/404"
 import Schedule from "./pages/Schedule"
+import Contact from './pages/Contact'
 import './App.css';
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/schedule" element={<Schedule />} />
+            <Route path="/contact" element={<Contact/>}/>
             <Route path="*" element={<PageNotFound />} />
           </Routes>
   );
