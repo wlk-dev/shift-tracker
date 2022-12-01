@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react"
 import { useAppContext } from "../utils/AppContext";
+import { phoneNumberBuilder } from "../utils/validators";
 import {
     Modal,
     ModalOverlay,
@@ -103,7 +104,14 @@ function UpdateUser() {
                                 type='text'
                                 name='contactNum'
                                 value={updateData.contactNum}
-                                onChange={(e) => setUserData({ ...updateData, [e.target.name]: e.target.value })}
+                                onChange={(e) => {
+                                    const result = phoneNumberBuilder(e.target.value, updateData.contactNum.length);
+
+                                    if (result.canUpdate) {
+                                        setUserData({ ...updateData, [e.target.name]: result.val })
+                                    }
+
+                                }}
                                 placeholder={appState.userData.contactNum} />
                         </FormControl>
                     </ModalBody>

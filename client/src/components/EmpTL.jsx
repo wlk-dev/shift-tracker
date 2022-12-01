@@ -10,6 +10,12 @@ import moment from 'moment'
 
 const EmpTL = (props) => {
 
+  if (props.blah.data[0] === undefined) {
+    return (
+      <p>User has no shifts.</p>
+    )
+  }
+
   const employees = [{ id: 1, title: 'Emp 1' }]
 
   const shifts = [

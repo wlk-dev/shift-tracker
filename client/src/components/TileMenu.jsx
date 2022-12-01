@@ -62,13 +62,13 @@ export default function TileMenu() {
         },
     ]
 
-    const createTiles = total => {
+    const createTiles = () => {
         return Array.from(items).map((item, index) => {
             return (<Tile goTo={item.goTo} key={index + 1} className="tile" idx={index} txt={item.txt} icon={item.icon} exec={item.exec} />)
         })
     }
 
-    const tiles = createTiles(6)
+    const tiles = createTiles()
 
     return (
         <div style={{height : "100vh"}} >
