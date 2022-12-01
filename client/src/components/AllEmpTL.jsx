@@ -11,45 +11,38 @@ import moment from 'moment'
 
 
 const AllEmpTL = (props) => {
+
+  // const employees = []
+  // const register = {}
+  // let index = 0
+
+  // let uid
   
-  const employees = [{ id: 1, title: 'Emp 1' }, { id: 2, title: 'Emp 2' }, { id: 3, title: 'Emp 3' }, { id: 4, title: 'Emp 4' }, { id: 5, title: 'Emp 5' }, { id: 6, title: 'Emp 6' }]
+  // for (const key in props.data.data) {
+  //   uid = props.data.data[key].user_id
+  //   if (register[uid] === undefined) {
+  //     register[uid] = true
+  //     index++;
+  //     employees.push({id: uid, title: `Emp ${index}`});
+  //   }
+  // }
 
-  const shifts = [
-    {
-      id: 1,
-      group: 1,
-      title: 'Working',
-      start_time: moment.unix(1669730400),
-      end_time: moment.unix(1669730400).add(8, 'hour'),
-      canMove: false,
-    },
-    {
-      id: 4,
-      group: 1,
-      title: 'Working',
-      start_time: moment.unix(1669730400),
-      end_time: moment.unix(1669730400).add(9, 'hour'),
-      canMove: false,
-    },
-    {
-      id: 2,
-      group: 2,
-      title: 'Working',
-      start_time: moment.unix(1669730400),
-      end_time: moment.unix(1669730400).add(8, 'hour'),
-      canMove: false,
-    },
-    {
-      id: 3,
-      group: 3,
-      title: 'Working',
-      start_time: moment.unix(1669730400),
-      end_time: moment.unix(1669730400).add(8, 'hour'),
-      canMove: false,
-    }
-  ]
+  const employees = [{ id: '6387f7a848ac79ba0c9c3f14', title: 'Emp 1' }, { id: "6388e941242b7ae85923fbc8", title: 'Emp 2' }, { id: 3, title: 'Emp 3' }, { id: 4, title: 'Emp 4' }, { id: 5, title: 'Emp 5' }, { id: 6, title: 'Emp 6' }]
 
-  console.log(shifts[1])
+  const shifts = []
+
+  for (const key in props.data.data) {
+    shifts.push(
+      {
+        id: key,
+        group: props.data.data[key].user_id,
+        title: 'Working',
+        start_time: moment(props.data.data[key].startTime),
+        end_time: moment(props.data.data[key].endTime),
+        canMove: false,
+      }
+    )
+  }
 
   const timelineStyle = {
     margin : "1%",
@@ -66,7 +59,6 @@ const AllEmpTL = (props) => {
       maxZoom={365.24 * 86400 * 1000}
       style={timelineStyle}
       lineHeight={50}
-      stackItems={"true"}
     >
       
     </Timeline>
