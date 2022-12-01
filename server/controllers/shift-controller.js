@@ -15,7 +15,6 @@ const createShift = async (req, res) => {
     }
 }
 
-
 //needs work
 const updateShift = async (req, res) => {
     try {
