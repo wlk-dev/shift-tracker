@@ -10,6 +10,8 @@ import Timeline, {
 import moment from 'moment'
 
 const EmpTL = (props) => {
+
+  // console.log(props.shifts)
   
   const employees = [{ id: 1, title: 'Emp 1' }]
 

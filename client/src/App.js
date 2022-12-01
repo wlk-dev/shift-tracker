@@ -34,27 +34,14 @@ function App() {
   }, [])
 
   return (
-<<<<<<< HEAD
-    <ChakraProvider>
-      <AppProvider>
-        <BrowserRouter>
-=======
->>>>>>> a2a170e18158e28ceddbe11bca544db93401b988
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/schedule" element={<Schedule />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-<<<<<<< HEAD
-        </BrowserRouter>
-      </AppProvider>
-    </ChakraProvider>
-
-=======
->>>>>>> a2a170e18158e28ceddbe11bca544db93401b988
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/schedule" element={<Schedule />} />
+      <Route path="*" element={<PageNotFound />} />
+    </Routes>
   );
 }
 
