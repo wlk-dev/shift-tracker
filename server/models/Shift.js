@@ -6,7 +6,8 @@ const ShiftSchema = new Schema({
   user_id: {
     type: Schema.Types.ObjectId,
     ref: 'User'
-  }
+  },
+  fname : {type : String}
 });
 
 const Shift = model("Shift", ShiftSchema);

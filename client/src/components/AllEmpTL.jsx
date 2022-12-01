@@ -1,38 +1,34 @@
 import React, { useState, useEffect } from "react"
 
-import Timeline, {
-  TimelineHeaders,
-  SidebarHeader,
-  DateHeader,
-} from 'react-calendar-timeline'
+import Timeline from 'react-calendar-timeline'
+
+import { Spinner, Alert, AlertIcon } from '@chakra-ui/react'
 
 import moment from 'moment'
 
 
 const AllEmpTL = (props) => {
-  const [ dataReady, setDataReady] = useState(false)
-  const [ employees, setEmployees] = useState([])
-  const [ shifts, setShifts] = useState([])
+  const [dataReady, setDataReady] = useState("not ready")
+  const [employees, setEmployees] = useState([])
+  const [shifts, setShifts] = useState([])
 
   const register = {}
   let index = 0
   let uid
 
   const timelineStyle = {
-    margin : "1%",
-    border : "solid 1px black",
+    margin: "1%",
+    border: "solid 1px black",
   }
 
   const prepData = () => {
-    console.log(props.data.data)
     let emps = []
     for (const key in props.data.data) {
-      console.log(key)
       uid = props.data.data[key].user_id
       if (register[uid] === undefined) {
         register[uid] = true
         index++;
-        emps.push({id: uid, title: `Emp ${index}`});
+        emps.push({ id: uid, title: `${props.data.data[key].fname}` });
       }
     }
 
@@ -55,35 +51,41 @@ const AllEmpTL = (props) => {
   }
 
   useEffect(() => {
-    if( employees.length && shifts.length){
-      console.log("ready")
-      setDataReady(true)
+    if (employees.length && shifts.length) {
+      setDataReady("ready")
+    } else {
+      setDataReady("no data")
     }
   }, [employees, shifts])
 
 
-  // const employees = [{ id: '6387f7a848ac79ba0c9c3f14', title: 'Emp 1' }, { id: "6388e941242b7ae85923fbc8", title: 'Emp 2' }, { id: 3, title: 'Emp 3' }, { id: 4, title: 'Emp 4' }, { id: 5, title: 'Emp 5' }, { id: 6, title: 'Emp 6' }]
-
-  useEffect( () => {
+  useEffect(() => {
     prepData()
   }, [])
 
-  
+
   return (
     <>
-      { dataReady === true && (
+      {dataReady === "ready" ? (
         <Timeline
-        groups={employees}
-        items={shifts}
-        defaultTimeStart={moment().add(-6, 'hour')}
-        defaultTimeEnd={moment().add(18, 'hour')}
-        minZoom={24 * 60 * 60 * 1000}
-        maxZoom={365.24 * 86400 * 1000}
-        style={timelineStyle}
-        lineHeight={50}
-      >
-        
-      </Timeline>
+          groups={employees}
+          items={shifts}
+          defaultTimeStart={moment().add(-6, 'hour')}
+          defaultTimeEnd={moment().add(18, 'hour')}
+          minZoom={24 * 60 * 60 * 1000}
+          maxZoom={365.24 * 86400 * 1000}
+          style={timelineStyle}
+          lineHeight={50}
+        >
+
+        </Timeline>
+      ) : dataReady === "no data" ? (
+        <Alert status='warning'>
+          <AlertIcon />
+          No active shifts.
+        </Alert>
+      ) : (
+        <Spinner />
       )}
     </>
   );

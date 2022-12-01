@@ -36,13 +36,6 @@ export default function TileMenu() {
 
     const items = [
         {
-            txt : "Home",
-            goTo : '/',
-            icon : faHouse,
-            exec : () => {}
-
-        },
-        {
             txt : "Profile",
             goTo : '/profile',
             icon : faCircleUser,
@@ -52,7 +45,7 @@ export default function TileMenu() {
             txt : "Schedule",
             goTo : '/schedule',
             icon : faCalendarDays,
-            exec : logout
+            exec : () => {}
         },
         {
             txt: "Contact",
