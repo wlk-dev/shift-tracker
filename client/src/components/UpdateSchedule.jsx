@@ -30,6 +30,9 @@ function AddShift() {
     })
 
     const updateResult = await update.json()
+    if (updateResult.result === "success") {
+      window.location.reload(false);
+    }
   }
     
 

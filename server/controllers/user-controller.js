@@ -83,13 +83,17 @@ const lookupUserByToken = async (req, res) => {
   // Get the token from the request headers & decode it 
   const token = cookies["auth-token"]  //cookies.authToken
   if (!token) return res.status(401).json({ msg: "un-authorized" })
+  console.log("No Token Received")
 
   // Look up the user from the decoded token
   const isVerified = jwt.verify(token, process.env.JWT_SECRET)
   if (!isVerified) return res.status(401).json({ msg: "un-authorized" })
+  console.log("Bad Token")
+
 
   const user = await User.findById(isVerified._id)
   if (!user) return res.status(401).json({ msg: "un-authorized" })
+  console.log("Could Not Find User by ID", isVerified._id)
 
   return res.status(200).json({ result: "success", payload: { _id: user._id, fname: user.fname, lname: user.lname, email: user.email, contactNum: user.contactNum, mgr: user.mgr } })
 }
