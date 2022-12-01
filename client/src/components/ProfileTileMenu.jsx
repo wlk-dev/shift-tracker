@@ -35,7 +35,7 @@ export default function ProfileTileMenu() {
         },
         {
             txt: "Contact",
-            goTO: '/contact',
+            goTo: '/contact',
             icon: faPhone,
             exec: () => {}
         },

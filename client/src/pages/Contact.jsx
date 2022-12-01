@@ -1,4 +1,5 @@
 import ContactRow from "../components/ContactRow"
+import Header from "../components/Header";
 import { useState } from "react"
 import { useAppContext } from "../utils/AppContext";
 import { TableContainer,
@@ -19,10 +20,17 @@ const Contact = () =>{
     //     headers: { "Content-Type": "application/json" },
     //     body: JSON.stringify()
     // })
-
+    
+    const gridStyle = {
+        display: 'flex',
+        justifyContent: 'center',
+        margin: '10px',
+        textAlign: "center",
+    }
     return(
         <>
-        <TableContainer>
+        <Header/>
+        <TableContainer style={gridStyle}>
         <Table variant='striped' colorScheme='teal'>
             <TableCaption>Imperial to metric conversion factors</TableCaption>
             <Thead>

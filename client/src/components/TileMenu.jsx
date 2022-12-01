@@ -56,7 +56,7 @@ export default function TileMenu() {
         },
         {
             txt: "Contact",
-            goTO: '/contact',
+            goTo: '/contact',
             icon: faPhone,
             exec: () => {}
         },
