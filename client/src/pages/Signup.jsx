@@ -23,6 +23,7 @@ import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import Cookie from "js-cookie"
 import { useNavigate } from "react-router-dom"
 import { useAppContext } from "../utils/AppContext"
+import { phoneNumberBuilder, validateCreds } from '../utils/validators';
 
 
 const Signup = () => {
@@ -35,39 +36,12 @@ const Signup = () => {
 
   const [formMessage, setFormMessage] = useState({ type: "", msg: "" })
 
-  function validateCreds() {
-    const { email, password, contactNum } = signUpCreds
-    const valid = { email: false, password: false, contactNum: false }
-
-    const eReg = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    const pReg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/;
-    const phReg = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
-
-    if (!eReg.test(email)) {
-      return valid
-    }
-    valid.email = true
-
-    if (!pReg.test(password)) {
-      return valid
-    }
-    valid.password = true
-
-    if (!phReg.test(contactNum)) {
-      return valid
-    }
-
-    valid.contactNum = true
-
-    return valid
-  }
-
   const handleSignup = async (e) => {
     e.preventDefault()
     
     setFormMessage({ type: "", msg: "" })
 
-    const validCreds = validateCreds()
+    const validCreds = validateCreds(signUpCreds)
 
     if (!validCreds.email) {
       setFormMessage({ type: "error", msg: "Not a valid email." })
@@ -152,13 +126,11 @@ const Signup = () => {
                   placeholder='000-000-0000'
                   value={signUpCreds.contactNum}
                   onChange={(e) => {
-                    let val = e.target.value.replace(/([a-z])$/, '')
-                    if ([3, 7].includes(val.length) && ![4, 8].includes(signUpCreds.contactNum.length)) { // add a dash if length is 3, allow user to delete and not auto-add if length is 4
-                      val += "-"
-                    }
-                    
-                    if(val.length <= 12 ) { // don't allow phone numbers longer than 12 characters(including dashes)
-                      setSignUpCreds({ ...signUpCreds, [e.target.name]: val })
+
+                    const result = phoneNumberBuilder(e.target.value, signUpCreds.contactNum.length);
+
+                    if (result.canUpdate) {
+                      setSignUpCreds({ ...signUpCreds, [e.target.name]: result.val })
                     }
                   }}
                 />

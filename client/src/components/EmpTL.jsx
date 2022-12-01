@@ -12,6 +12,12 @@ import moment from 'moment'
 
 const EmpTL = (props) => {
   const { appState } = useAppContext();
+  
+  if (props.blah.data[0] === undefined) {
+    return (
+      <p>User has no shifts.</p>
+    )
+  }
 
   console.log(appState)
 

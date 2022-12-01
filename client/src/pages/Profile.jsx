@@ -8,7 +8,7 @@ import { useEffect, useState } from "react"
 
 function Profile() {
 
-  const [myData, setMyData] = useState({ data: {} })
+  const [myData, setMyData] = useState(null)
   const [ready, setReady] = useState(false)
   const { appState } = useAppContext();
 
