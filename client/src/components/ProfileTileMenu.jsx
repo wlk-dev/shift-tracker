@@ -12,7 +12,7 @@ export default function ProfileTileMenu() {
     const containerStyle = {
         display: 'flex',
         height: '60px',
-        background: 'grey',
+        background: '#333',
     }
 
     const items = [
