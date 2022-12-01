@@ -1,22 +1,25 @@
 import React from "react";
-import { useAppContext } from "../utils/AppContext";
-import { Card, CardHeader, Heading, Box } from '@chakra-ui/react'
-import ProfileTile from "./ProfileTile"; 
+import { useLocation } from "react-router-dom"
+import { useAppContext } from "../utils/AppContext"
 import ProfileTileMenu from "./ProfileTileMenu";
+import { Card, CardHeader, Heading, Box } from '@chakra-ui/react'
+
 
 const Header = () =>{
+    const {appState} = useAppContext()
+    const location = useLocation() 
 
-    const appCtx = useAppContext();
-    const state = appCtx.appState
 
     return(
         <>
         <Box backgroundColor={'black'}>
             <Card>
                 <CardHeader>
-                    <Heading color={"white"} size='md'>Welcome back, {state.userData.fname}</Heading>
+                    <Heading color={"white"} size='md'>Welcome back, {appState.userData.fname}</Heading>
                 </CardHeader>
-            <ProfileTileMenu/>
+            {location.pathname !== "/" && (
+                <ProfileTileMenu/>
+            )}
             </Card>
         </Box>
         </>

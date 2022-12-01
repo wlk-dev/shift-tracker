@@ -1,7 +1,6 @@
 import ProfileContact from "../components/ProfileContact";
 import ProfileCard from "../components/ProfileCard";
-import { Grid, GridItem } from '@chakra-ui/react'
-import ProfileTileMenu from "../components/ProfileTileMenu";
+import { Grid, GridItem, Spinner } from '@chakra-ui/react'
 import EmpTL from "../components/EmpTL"
 import Header from "../components/Header";
 import { useAppContext } from "../utils/AppContext"
@@ -26,7 +25,9 @@ function Profile() {
       setReady(true)
     }
 
-    getUser()
+    if (appState.userData._id !== undefined) {
+      getUser()
+    }
   }, [appState])
 
   return (
@@ -49,10 +50,11 @@ function Profile() {
           <ProfileContact />
         </GridItem>
       </Grid>
-      {ready && (
+      {ready ? (
         <EmpTL blah={myData} />
+      ) : (
+        <Spinner />
       )}
-      <ProfileTileMenu />
     </div>
   )
 }
