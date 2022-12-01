@@ -19,6 +19,7 @@ import {
 
 function AddShift() {
   const [updateData, setUserData] = useState({startTime: "", endTime: ""})
+  const { appState } = useAppContext();
 
   const addShift = async () =>{
 
