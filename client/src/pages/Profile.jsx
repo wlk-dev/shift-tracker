@@ -10,6 +10,7 @@ import { useEffect, useState } from "react"
 function Profile() {
 
   const [myData, setMyData] = useState({ data: {} })
+  const [ready, setReady] = useState(false)
   const { appState } = useAppContext();
 
   useEffect(() => {
@@ -22,6 +23,7 @@ function Profile() {
       const qResult = await query.json()
 
       setMyData({ data: { ...qResult.payload } })
+      setReady(true)
     }
 
     getUser()
@@ -47,7 +49,7 @@ function Profile() {
           <ProfileContact />
         </GridItem>
       </Grid>
-      {!!myData && (
+      {ready && (
         <EmpTL blah={myData} />
       )}
       <ProfileTileMenu />
