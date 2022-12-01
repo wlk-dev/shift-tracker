@@ -1,5 +1,5 @@
 const connection = require('../config/connection');
-const { User } = require('../models');
+const { User, Shift } = require('../models');
 const { getRandomName } = require('./data');
 const bcrypt = require("bcrypt")
 
@@ -9,6 +9,7 @@ connection.once('open', async () => {
     console.log('connected');
 
     await User.deleteMany({});
+    await Shift.deleteMany({});
 
     const users = [];
 

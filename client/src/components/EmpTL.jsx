@@ -1,12 +1,8 @@
 import React from "react"
-import { useState } from "react"
 import { useAppContext } from "../utils/AppContext";
+import {Alert, AlertIcon} from "@chakra-ui/react"
 
-import Timeline, {
-  TimelineHeaders,
-  SidebarHeader,
-  DateHeader
-} from 'react-calendar-timeline'
+import Timeline from 'react-calendar-timeline'
 
 import moment from 'moment'
 
@@ -15,7 +11,10 @@ const EmpTL = (props) => {
   
   if (props.blah.data[0] === undefined) {
     return (
-      <p>User has no shifts.</p>
+      <Alert status='warning'>
+          <AlertIcon />
+          No active shifts.
+        </Alert>
     )
   }
 
@@ -53,7 +52,7 @@ const EmpTL = (props) => {
       maxZoom={365.24 * 86400 * 1000}
       style={timelineStyle}
       lineHeight={50}
-      stackItems={"true"}
+      stackItems={true}
       traditionalZoom={true}
     >
       

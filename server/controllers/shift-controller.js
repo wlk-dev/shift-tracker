@@ -1,4 +1,4 @@
-const Shift = require("../models/Shift")
+const {Shift, User} = require("../models/")
 const jwt = require("jsonwebtoken")
 const cookie = require("cookie")
 const bcrypt = require("bcrypt")
@@ -8,7 +8,8 @@ require("dotenv").config()
 
 const createShift = async (req, res) => {
     try {
-        const createQuery = await Shift.create({...req.body, user_id:req.params.id});
+        const getUser = await User.findById(req.params.id)
+        const createQuery = await Shift.create({...req.body, user_id:req.params.id, fname : getUser.fname});
         res.status(200).json({ result: "success" })
     } catch (err) {
         console.trace(err)

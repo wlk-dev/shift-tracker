@@ -75,25 +75,34 @@ const authenticateLogin = async (req, res) => {
 }
 
 const lookupUserByToken = async (req, res) => {
-  if (!req.headers || !req.headers.cookie) return res.status(401).json({ msg: "un-authorized" })
+  if (!req.headers || !req.headers.cookie) {
+    console.log("Bad Headers")
+    return res.status(401).json({ msg: "un-authorized" })
+  }
 
   // The node package named cookie will parse cookies for us
   const cookies = cookie.parse(req.headers.cookie)
 
   // Get the token from the request headers & decode it 
   const token = cookies["auth-token"]  //cookies.authToken
-  if (!token) return res.status(401).json({ msg: "un-authorized" })
-  console.log("No Token Received")
+  if (!token) {
+    console.log("No Token Received")
+    return res.status(401).json({ msg: "un-authorized" })
+  }
 
   // Look up the user from the decoded token
   const isVerified = jwt.verify(token, process.env.JWT_SECRET)
-  if (!isVerified) return res.status(401).json({ msg: "un-authorized" })
-  console.log("Bad Token")
+  if (!isVerified) {
+    console.log("Bad Token")
+    return res.status(401).json({ msg: "un-authorized" })
+  }
 
 
   const user = await User.findById(isVerified._id)
-  if (!user) return res.status(401).json({ msg: "un-authorized" })
-  console.log("Could Not Find User by ID", isVerified._id)
+  if (!user) {
+    console.log("Could Not Find User by ID", isVerified._id)
+    return res.status(401).json({ msg: "un-authorized" })
+  }
 
   return res.status(200).json({ result: "success", payload: { _id: user._id, fname: user.fname, lname: user.lname, email: user.email, contactNum: user.contactNum, mgr: user.mgr } })
 }
