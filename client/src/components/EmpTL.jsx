@@ -11,6 +11,8 @@ import moment from 'moment'
 
 const EmpTL = (props) => {
 
+  console.log(props)
+
   const employees = [{ id: 1, title: 'Emp 1' }]
 
   const shifts = [
