@@ -11,7 +11,7 @@ import Schedule from "./pages/Schedule"
 import './App.css';
 
 function App() {
-  const {setAppState} = useAppContext()
+  const { setAppState } = useAppContext()
 
   const navigate = useNavigate()
   const location = useLocation();
@@ -20,7 +20,7 @@ function App() {
     const authCheck = await fetch("/api/user/lookup")
     const checkResult = await authCheck.json()
     if (checkResult && checkResult.result === "success") {
-      setAppState({userData : checkResult.payload})
+      setAppState({ userData: checkResult.payload })
     } else {
       const currentPath = location.pathname
       if (!["/login", "/signup"].includes(currentPath)) {
