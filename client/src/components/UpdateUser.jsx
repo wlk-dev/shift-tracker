@@ -43,8 +43,7 @@ function UpdateUser() {
         const qResult = query.json()
         
         if (qResult.result === "success") {
-            console.log(qResult.payload)
-            console.log(updateData, appState)
+            console.log("Updated Profile!")
         }
         
         setUserData({ fname: "", lname: "", email: '', contactNum: '' })
