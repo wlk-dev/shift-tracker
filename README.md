@@ -13,17 +13,17 @@
   * [Credits](#credits)
 
   # Screenshot
-
+  ![Screen Shot 2022-12-01 at 11 22 47 AM](https://user-images.githubusercontent.com/110851664/205332053-de3a487d-6394-4f8b-aaf1-11fb2b3fc605.png)
   
   # Installation
-  N/A
+  Clone the repo, in the terminal `npm i`, then `npm run dev`
 
   # Usage 
-  N/A
+  Use the app to keep track of your work schedule
 
   # Links
+  * [Deployed site](https://shift-tracker.herokuapp.com/login)
   * [Repository](https://github.com/wlk-dev/shift-tracker)
-  
 
   # License
   [MIT](https://opensource.org/licenses/MIT)
