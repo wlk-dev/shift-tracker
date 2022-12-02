@@ -2,6 +2,7 @@ import React from "react";
 import { useAppContext } from "../utils/AppContext";
 import UpdateUser from "./UpdateUser";
 import UpdateSchedule from "./UpdateSchedule";
+import DeleteShift from "./DeleteShift";
 import { 
     Card,
     CardBody, 
@@ -39,6 +40,7 @@ const ProfileCard = (props) =>{
                 </CardBody>
                 <Divider />
                 <UpdateSchedule />
+                <DeleteShift />
                 <UpdateUser/>
             </Card>
         </>
