@@ -55,6 +55,15 @@ const getShiftByUser = async (req, res) => {
     }
 }
 
+const deleteShiftByUser = async (req, res) => {
+    try {
+        const deleteById = await Shift.deleteOne({_id:req.params.id})
+        res.status(200).json({ result: "success", payload: deleteById })
+    } catch (err) {
+        res.status(400).json({ result: "fail", message: 'No shift found by that id' })
+    }
+}
+
 const authenticateLogin = async (req, res) => {
     // First see if we have a manager with the supplied email address 
     const foundManager = await Manager.findOne({ email: req.body.email })
@@ -103,4 +112,5 @@ module.exports = {
     authenticateLogin,
     lookupManagerByToken,
     updateShift,
+    deleteShiftByUser
 }
