@@ -1,11 +1,13 @@
 import React from "react"
 import ProfileTile from "./ProfileTile"
+import { useLocation } from "react-router-dom"
 import { faHouse, faCircleUser, faArrowRightFromBracket, faCalendarDays, faPhone } from '@fortawesome/free-solid-svg-icons'
 import { useAppContext } from "../utils/AppContext"
 
 
 
 export default function ProfileTileMenu() {
+  const location = useLocation();
   const { logout } = useAppContext()
 
     const containerStyle = {
@@ -45,13 +47,15 @@ export default function ProfileTileMenu() {
         }
     ]
 
-    const createTiles = total => {
+    const createTiles = () => {
         return Array.from(items).map((item, index) => {
-            return (<ProfileTile goTo={item.goTo} key={index + 1} className="tile" idx={index} icon={item.icon} exec={item.exec} />)
+            if (location.pathname !== item.goTo) {
+                return (<ProfileTile goTo={item.goTo} key={index + 1} className="tile" idx={index} icon={item.icon} exec={item.exec} />)
+            }
         })
     }
 
-    const tiles = createTiles(6)
+    const tiles = createTiles()
 
     return (
         <div style={containerStyle} >
