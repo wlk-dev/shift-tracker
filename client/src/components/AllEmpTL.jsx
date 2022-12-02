@@ -13,7 +13,6 @@ const AllEmpTL = (props) => {
   const [shifts, setShifts] = useState([])
 
   const register = {}
-  let index = 0
   let uid
 
   const timelineStyle = {
@@ -27,7 +26,6 @@ const AllEmpTL = (props) => {
       uid = props.data.data[key].user_id
       if (register[uid] === undefined) {
         register[uid] = true
-        index++;
         emps.push({ id: uid, title: `${props.data.data[key].fname}` });
       }
     }

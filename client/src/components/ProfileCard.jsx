@@ -34,7 +34,7 @@ const ProfileCard = (props) =>{
                     borderRadius='lg'
                     />
                     <Stack mt='6' spacing='3'>
-                    <Heading size='md'>{state.userData.fname}</Heading>
+                    <Heading size='md'>{state.userData.fname}, {state.userData.lname}</Heading>
                     </Stack>
                 </CardBody>
                 <Divider />
