@@ -1,6 +1,6 @@
 import ProfileContact from "../components/ProfileContact";
 import ProfileCard from "../components/ProfileCard";
-import { Grid, GridItem, Spinner } from '@chakra-ui/react'
+import { Grid, GridItem, Spinner, SimpleGrid } from '@chakra-ui/react'
 import EmpTL from "../components/EmpTL"
 import Header from "../components/Header";
 import { useAppContext } from "../utils/AppContext"
@@ -35,26 +35,28 @@ function Profile() {
       <Header />
       <Grid
         templateAreas={`"nav main"`}
-        gridTemplateRows={'1fr'}
-        gridTemplateColumns={'300px 1fr'}
+        gridTemplateRows={'repeat(2 , 1fr)'}
+        gridTemplateColumns={'repeat(5, 1fr)'}
         h='400px'
         gap='1'
         color='blackAlpha.700'
         fontWeight='bold'
         style={{ paddingBottom: '5px', paddingTop: '5px', }}
       >
-        <GridItem pl='2' bg='#DEB887' area={'nav'}>
+        <GridItem colSpan={2} pl='2' bg='#DEB887' area={'nav'}>
           <ProfileCard />
         </GridItem>
-        <GridItem pl='2' h='' bg='#DEB887' area={'main'}>
+        <GridItem colSpan={4} pl='2' h='' bg='#DEB887' area={'main'}>
           <ProfileContact />
         </GridItem>
+        {ready ? (
+          <GridItem colSpan={12}>
+            <EmpTL blah={myData} />
+          </GridItem>
+        ) : (
+          <Spinner />
+        )}
       </Grid>
-      {ready ? (
-        <EmpTL blah={myData} />
-      ) : (
-        <Spinner />
-      )}
     </div>
   )
 }

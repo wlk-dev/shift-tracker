@@ -1,48 +1,47 @@
 import ContactRow from "../components/ContactRow"
 import { useState, useEffect } from "react"
 import Header from "../components/Header"
-import { TableContainer,
+import {
+    TableContainer,
     Table,
-    TableCaption,
     Thead,
     Tr,
     Th,
     Tbody,
-    Td,
-    Tfoot, 
-    grid} from '@chakra-ui/react'
+    SimpleGrid
+} from '@chakra-ui/react'
 
-const Contact = () =>{
+const Contact = () => {
 
     const [allUserData, setAllUserData] = useState(null)
 
-    const getAllUsers = async ()=>{
+    const getAllUsers = async () => {
         const query = await fetch('/api/user/', {
             method: 'GET',
             headers: { "Content-Type": "application/json" }
         })
 
         const result = await query.json()
-        setAllUserData({...result.payload})
+        setAllUserData({ ...result.payload })
     }
 
-    useEffect(() =>{
+    useEffect(() => {
         getAllUsers()
-    },[])
+    }, [])
 
-    const createRow = () =>{
+    const createRow = () => {
         return Array.from(Object.keys(allUserData)).map((key, index) => {
-            return(
+            return (
                 <ContactRow key={index + 1} fname={allUserData[key].fname} lname={allUserData[key].lname} contactNum={allUserData[key].contactNum} email={allUserData[key].email} />
             )
         })
     }
 
     let row
-    if(allUserData){
+    if (allUserData) {
         row = createRow()
     }
-    
+
 
 
     const gridStyle = {
@@ -52,23 +51,23 @@ const Contact = () =>{
         textAlign: "center",
     }
 
-    return(
+    return (
         <>
-        <Header />
-        <TableContainer style={gridStyle}>
-        <Table variant='striped'>
-            <Thead>
-            <Tr>
-                <Th>Name</Th>
-                <Th>Phone Number</Th>
-                <Th isNumeric>Email</Th>
-            </Tr>
-            </Thead>
-            <Tbody>
-                {allUserData && (row)}
-            </Tbody>
-        </Table>
-        </TableContainer>
+            <Header />
+                <TableContainer>
+                    <Table variant='striped'>
+                        <Thead>
+                            <Tr>
+                                <Th>Name</Th>
+                                <Th>Phone Number</Th>
+                                <Th isNumeric>Email</Th>
+                            </Tr>
+                        </Thead>
+                        <Tbody>
+                            {allUserData && (row)}
+                        </Tbody>
+                    </Table>
+                </TableContainer>
         </>
     )
 }
