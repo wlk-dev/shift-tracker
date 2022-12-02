@@ -74,8 +74,6 @@ const Signup = () => {
     } else {
       setFormMessage({ type: "error", msg: "We could not sign you up with the credentials provided, make sure all fields are filled out." })
     }
-
-    // setSignUpCreds({ fname: "", lname: "", email: "", password: "", contactNum: "" })
   }
 
   return (

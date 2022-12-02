@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function ProfileTile(props) {
     const [isHover, setIsHover] = useState(false);
-    const { goTo, txt, icon, exec } = props
+    const { goTo, icon, exec } = props
 
     function msEnter() {
         setIsHover(true)

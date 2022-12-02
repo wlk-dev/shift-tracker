@@ -1,7 +1,6 @@
 import React from "react"
 import {
 Tr,
-Tbody,
 Td} from '@chakra-ui/react'
 
 const ContactRow = (props) =>{

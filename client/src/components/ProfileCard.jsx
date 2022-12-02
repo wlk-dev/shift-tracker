@@ -8,7 +8,6 @@ import {
     CardBody, 
     Heading, 
     Stack, 
-    Text,
     Image,
     Divider
 } from '@chakra-ui/react'

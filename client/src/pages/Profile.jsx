@@ -1,6 +1,6 @@
 import ProfileContact from "../components/ProfileContact";
 import ProfileCard from "../components/ProfileCard";
-import { Grid, GridItem, Spinner, SimpleGrid } from '@chakra-ui/react'
+import { Grid, GridItem, Spinner } from '@chakra-ui/react'
 import EmpTL from "../components/EmpTL"
 import Header from "../components/Header";
 import { useAppContext } from "../utils/AppContext"

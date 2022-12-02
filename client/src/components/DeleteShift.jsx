@@ -5,7 +5,6 @@ import {
     Modal,
     ModalOverlay,
     ModalContent,
-    ModalHeader,
     ModalFooter,
     ModalBody,
     ModalCloseButton,
@@ -13,7 +12,6 @@ import {
     Button,
     FormControl,
     FormLabel,
-    Input,
     Select
 } from '@chakra-ui/react'
 

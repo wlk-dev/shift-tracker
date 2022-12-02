@@ -1,7 +1,6 @@
 import React from "react"
 import ProfileTile from "./ProfileTile"
 import { faHouse, faCircleUser, faArrowRightFromBracket, faCalendarDays, faPhone } from '@fortawesome/free-solid-svg-icons'
-import { background, SimpleGrid } from '@chakra-ui/react'
 import { useAppContext } from "../utils/AppContext"
 
 

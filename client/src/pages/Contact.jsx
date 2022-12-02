@@ -8,7 +8,6 @@ import {
     Tr,
     Th,
     Tbody,
-    SimpleGrid
 } from '@chakra-ui/react'
 
 const Contact = () => {
@@ -40,15 +39,6 @@ const Contact = () => {
     let row
     if (allUserData) {
         row = createRow()
-    }
-
-
-
-    const gridStyle = {
-        display: 'flex',
-        justifyContent: 'center',
-        margin: '10px',
-        textAlign: "center",
     }
 
     return (

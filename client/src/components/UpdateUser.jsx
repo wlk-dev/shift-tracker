@@ -28,20 +28,26 @@ function UpdateUser() {
         for (const key in appState.userData) {
             if (updateData[key] === "") { // if no new data is set using the modal, use the current data from appState
                 updateData[key] = appState.userData[key]
-                console.log()
             }
         }
 
-        setAppState({ userData: updateData })
-    
-        const update = await fetch(`/api/user/${appState.userData._id}`, {
+        setAppState({ userData: {...updateData} })
+
+        
+        const query = await fetch(`/api/user/${appState.userData._id}`, {
             method: 'PUT',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(updateData)
         })
+
+        const qResult = query.json()
+        
+        if (qResult.result === "success") {
+            console.log(qResult.payload)
+            console.log(updateData, appState)
+        }
         
         setUserData({ fname: "", lname: "", email: '', contactNum: '' })
-        // const updateResult = await update.json()
     }
 
     const { appState, setAppState } = useAppContext()
